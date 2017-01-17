@@ -100,7 +100,7 @@
                         </form>
                         <p>
                             <br /><br /><small>
-                                Copyright © 2016 - All Rights Reserved - The Raza Foundation<br />
+                                © 2016 - All Rights Reserved - The Raza Foundation<br />
 <!--
                                 No image available from this site may be used for commercial purposes without written permission from JSS Mahavidyapeetha.
 -->

@@ -4,6 +4,7 @@
             <div class="row"><!-- row -->
                 <div class="col-lg-12">
                     <p class="copy-text text-center">
+						© 2016 - All Rights Reserved - The Raza Foundation<br />
 <!--
                         No image available from this site may be used for commercial purposes without written permission from JSS Mahavidyapeetha.
 -->
