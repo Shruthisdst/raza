@@ -24,9 +24,9 @@ define('DB_PREFIX', 'raza');
 define('DB_HOST', 'localhost');
 
 // photo will become iitmPHOTO inside
-define('DB_NAME', 'letters');
+define('DB_NAME', 'archives');
 
-define('razaLETTERS_USER', 'root');
-define('razaLETTERS_PASSWORD', 'mysql');
+define('razaARCHIVES_USER', 'root');
+define('razaARCHIVES_PASSWORD', 'mysql');
 
 ?>
