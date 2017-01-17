@@ -1,0 +1,8 @@
+public/Letters/*.jpg
+public/Letters/*/*.jpg
+public/Letters/*/*/*.jpg
+public/Letters/*/*/*/*.jpg
+public/Letters/*.JPG
+public/Letters/*/*.JPG
+public/Letters/*/*/*.JPG
+public/Letters/*/*/*/*.JPG
