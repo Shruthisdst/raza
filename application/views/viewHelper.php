@@ -104,7 +104,7 @@ class viewHelper extends View {
         // $html .= '<li>Do you know details about this picture? Mail us at heritage@iitm.ac.in quoting the image ID. Thank you.</li>';
 
         if($pdfFilePath != ''){
-            $html .= '<li><a href="'.$pdfFilePath.'">Click here to view PDF</a></li>'; 
+            $html .= '<li><a href="'.$pdfFilePath.'" target="_blank">Click here to view PDF</a></li>'; 
         }
 
         $html .= '</ul>';
