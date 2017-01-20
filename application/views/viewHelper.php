@@ -23,14 +23,23 @@ class viewHelper extends View {
     }
 
     public function getLettersCount($id = '') {
-
-        $count = sizeof(glob(PHY_PHOTO_URL . $id . '/*.json'));
-        return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
+			$ids = preg_split('/__/', $id);
+			$archives = array("01"=>"Letters", "02"=>"Articles");
+			$atype = $archives[$ids[0]];
+			$archivePath = PHY_PUBLIC_URL . $atype . "/";
+			$count = sizeof(glob($archivePath . $ids[1] . '/*.json'));
+			return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
+		
     }
 
     public function getActualID($combinedID) {
 
         return preg_replace('/^(.*)__/', '', $combinedID);
+    }
+    public function getType($combinedID) {
+		
+
+        return preg_replace('/(.*)__(.*)/', '$1', $combinedID);
     }
     
     public function getAlbumID($combinedID){
@@ -39,25 +48,31 @@ class viewHelper extends View {
     }
 
     public function includeRandomThumbnail($id = '') {
-
-        $letters = glob(PHY_PHOTO_URL . $id . '/*',GLOB_ONLYDIR);
+		$archives = array("01"=>"Letters", "02"=>"Articles");
+		$archiveType = $this->getType($id);
+		$atype = $archives[$archiveType];
+		$id = $this->getActualID($id);
+        $letters = glob(PHY_PUBLIC_URL . $atype . '/' . $id . '/*',GLOB_ONLYDIR);
+        
         $randNum = rand(0, sizeof($letters) - 1);
         $letterSelected = $letters[$randNum];
         $pages = glob($letterSelected . '/thumbs/*.JPG');
         $randNum = rand(0, sizeof($pages) - 1);
         $pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_PHOTO_URL, PHOTO_URL, $pageSelected);
+        return str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $pageSelected);
     }
 
     public function includeRandomThumbnailFromLetter($id = '') {
-
+		
         $ids = preg_split('/__/', $id);
-        $pages = glob(PHY_PHOTO_URL . $ids[0] . '/' . $ids[1] .  '/thumbs/*.JPG');
+        $archives = array("01"=>"Letters", "02"=>"Articles");
+        $atype = $archives[$ids[0]];
+        $pages = glob(PHY_PUBLIC_URL . $atype . '/' . $ids[1] . '/' . $ids[2] .  '/thumbs/*.JPG');
         $randNum = rand(0, sizeof($pages) - 1);
         $pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_PHOTO_URL, PHOTO_URL, $pageSelected);
+        return str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $pageSelected);
     }
 
     public function displayFieldData($json, $auxJson='') {
@@ -68,9 +83,17 @@ class viewHelper extends View {
 
         $pdfFilePath = '';
         if(isset($data['id'])) {
-
+			
             $actualID = $this->getActualID($data['id']);
-            $pdfFilePath = PHOTO_URL . $data['albumID'] . '/' . $actualID . '/index.pdf'; 
+            if($data['Type'] == "Letter")
+            {
+				$pdfFilePath = LETTERS_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+			}
+			elseif($data['Type'] == "Article")
+			{
+				$pdfFilePath = ARTICLES_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+			}
+            
             $data['id'] = $data['albumID'] . '/' . $data['id'];
             unset($data['albumID']);
         }
@@ -104,7 +127,7 @@ class viewHelper extends View {
         // $html .= '<li>Do you know details about this picture? Mail us at heritage@iitm.ac.in quoting the image ID. Thank you.</li>';
 
         if($pdfFilePath != ''){
-            $html .= '<li><a href="'.$pdfFilePath.'">Click here to view PDF</a></li>'; 
+            $html .= '<li><a href="'.$pdfFilePath.'" target="_blank">Click here to view PDF</a></li>'; 
         }
 
         $html .= '</ul>';
@@ -113,11 +136,12 @@ class viewHelper extends View {
     }
 
     public function displayThumbs($id){
-
-        $albumID = $this->getAlbumID($id);
-        $letterID = $this->getActualID($id);
-        $filesPath = PHY_PHOTO_URL . $albumID . '/' . $letterID . '/thumbs/*' . PHOTO_FILE_EXT;
-
+		$ids = preg_split('/__/', $id);
+		$archives = array("01"=>"Letters", "02"=>"Articles");
+        $atype = $archives[$ids[0]];
+        //~ $albumID = $this->getAlbumID($id);
+        //~ $letterID = $this->getActualID($id);
+        $filesPath = PHY_PUBLIC_URL . $atype . '/' . $ids[1] . '/' . $ids[2] . '/thumbs/*' . PHOTO_FILE_EXT;
         $files = glob($filesPath);
 
 
@@ -128,7 +152,7 @@ class viewHelper extends View {
             $mainFile = preg_replace('/thumbs\//', '', $mainFile);
             echo '<span class="img-small">';
 
-            echo '<img class="img-responsive" data-original="'.str_replace(PHY_PHOTO_URL, PHOTO_URL, $mainFile).'" src="' . str_replace(PHY_PHOTO_URL, PHOTO_URL, $file) . '" >';
+            echo '<img class="img-responsive" data-original="'.str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $mainFile).'" src="' . str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $file) . '" >';
 
             echo '</span>';
         }

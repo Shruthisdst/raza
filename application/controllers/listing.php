@@ -13,16 +13,16 @@ class listing extends Controller {
 		$this->albums();
 	}
 
-	public function albums() {
+	public function albums($defaultType = DEFAULT_TYPE) {
 
-		$data = $this->model->listAlbums();
+		$data = $this->model->listAlbums($defaultType);
 		($data) ? $this->view('listing/albums', $data) : $this->view('error/index');
 	}
 
-	public function letters($album = DEFAULT_ALBUM) {
+	public function archives($album = DEFAULT_ALBUM) {
 
-		$data = $this->model->listLetters($album);
-		($data) ? $this->view('listing/letters', $data) : $this->view('error/index');
+		$data = $this->model->listArchives($album);
+		($data) ? $this->view('listing/archives', $data) : $this->view('error/index');
 	}
 }
 

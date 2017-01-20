@@ -116,11 +116,14 @@ class Model {
 		return $result;
 	}
 
-	public function getNeighbourhood($albumID, $id) {
+	public function getNeighbourhood($id) {
+		$ids = preg_split('/__/', $id);
+		$archives = array("01"=>"Letters", "02"=>"Articles");
+        $atype = $archives[$ids[0]];
+		$albumID = $ids[1];
+		$albumPath = PHY_PUBLIC_URL . $atype . '/' . $albumID;
 
-		$albumPath = PHY_PHOTO_URL . $albumID;
-
-		$actualID = $this->getActualID($id);
+		$actualID = $ids[2];
 
 		$letterPath = $albumPath . "/" . $actualID . '.json';
 		// var_dump($letterPath);

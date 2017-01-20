@@ -5,9 +5,9 @@
         <!-- Column 1 -->
         <div class="col-md-12 text-center">
             <ul class="list-inline sub-nav">
-                <li><a href="<?=BASE_URL?>listing/albums">Letters</a></li>
+                <li><a href="<?=BASE_URL?>listing/albums/01">Letters</a></li>
                 <li><a>·</a></li>
-                <li><a href="#">Articles</a></li>
+                <li><a href="<?=BASE_URL?>listing/albums/02">Articles</a></li>
                 <li><a>·</a></li>
                 <li><a href="#">Books</a></li>
                 <li><a>·</a></li>

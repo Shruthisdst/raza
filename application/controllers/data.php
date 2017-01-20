@@ -27,32 +27,38 @@ class data extends Controller {
 		$this->model->db->createTable(METADATA_TABLE_L4, $dbh, METADATA_TABLE_L4_SCHEMA);
 		
 		//List albums
-		$albums = $this->model->listFiles(PHY_PHOTO_URL, 'json');
-		if($albums) {
+		$archives = array("01"=>"Letters", "02"=>"Articles");
+		//~ echo $archives['02'];
+		foreach($archives as $key => $value)
+		{
+			$archivePath = PHY_PUBLIC_URL . $value . "/";
+		
+			$albums = $this->model->listFiles($archivePath, 'json');
+			if($albums) {
 
-			$this->model->insertAlbums($albums, $dbh);
+				$this->model->insertAlbums($key, $albums, $dbh);
 
-			foreach ($albums as $album) {
-			
+				foreach ($albums as $album) {
+					
 
-				// List photos
-				$letters = $this->model->listFiles(str_replace('.json', '/', $album), 'json');
+					// List photos
+					$letters = $this->model->listFiles(str_replace('.json', '/', $album), 'json');
 
-				if($letters) {
+					if($letters) {
 
-					$this->model->insertLetters($letters, $dbh);
-				}
-				else{
+						$this->model->insertLetters($key, $letters, $dbh);
+					}
+					else{
 
-					echo 'Album ' . $album . ' does not have any letters' . "\n";
+						echo 'Album ' . $album . ' does not have any letters' . "\n";
+					}
 				}
 			}
-		}
-		else{
+			else{
 
-			echo 'No albums to insert';
+				echo 'No albums to insert';
+			}
 		}
-
 		$dbh = null;
 	}
 }

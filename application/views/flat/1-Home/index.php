@@ -33,33 +33,33 @@
             <h1>The Collection</h1>
             <ul class="list-inline">
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/albums">
+                    <a href="<?=BASE_URL?>listing/albums/01">
                         <h2><i class="fa fa-envelope"></i></h2>
                         <p>Letters</p>
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="#">
+                    <a href="<?=BASE_URL?>listing/albums/02">
                         <h2><i class="fa fa-file-text-o"></i></h2>
                         <p>Articles</p>
                     </a>
                 </li>
                 <li class="stat-elem">
                     <a href="#">
-                        <h2><i class="fa fa-volume-up"></i></h2>
-                        <p>Multimedia</p>
+                        <h2><i class="fa fa-book"></i></h2>
+                        <p>Books</p>
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>Oral_History">
+                    <a href="#">
                         <h2><i class="fa fa-image"></i></h2>
                         <p>Photographs</p>
                     </a>
                 </li>
                 <li class="stat-elem">
                     <a href="#">
-                        <h2><i class="fa fa-book"></i></h2>
-                        <p>Books</p>
+                        <h2><i class="fa fa-volume-up"></i></h2>
+                        <p>Multimedia</p>
                     </a>
                 </li>
                 <li class="stat-elem">
@@ -75,35 +75,6 @@
 <div class="container-fluid physical" id="physical">
 </div>
 
-<div class="container-fluid" id="contact">
-    <div class="row first-row">
-        <div class="col-md-12 clear-paddings">
-            <div class="fixOverlayDiv">
-                <img class="img-responsive gap-above" src="<?=PUBLIC_URL?>images/stock/slide2.jpg">
-                <div class="OverlayTextMain">
-                    <div class="mainpage">
-                        <h2>Contact</h2><br />
-                        <form method="post" action="<?=BASE_URL . 'mail/send'?>">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Name" required="required">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required">
-                            </div>
-                            <div class="form-group">
-                                <textarea rows="5" class="form-control" name="message" id="message" placeholder="Your message here" required="required"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="6Le_DBsTAAAAACt5YrgWhjW00CcAF0XYlA30oLPc"></div>
-                            </div>
-                            <button type="submit" class="btn btn-default naked email-submit">Submit</button>
-                        </form>
-                        <p>
-                            <br /><br /><small>
-                                © 2016 - All Rights Reserved - The Raza Foundation<br />
-<!--
-                                No image available from this site may be used for commercial purposes without written permission from JSS Mahavidyapeetha.
--->
                             </small><br />
                         </p>
                     </div>
