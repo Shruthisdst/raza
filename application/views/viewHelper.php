@@ -24,7 +24,7 @@ class viewHelper extends View {
 
     public function getLettersCount($id = '') {
 			$ids = preg_split('/__/', $id);
-			$archives = array("01"=>"Letters", "02"=>"Articles");
+			$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous");
 			$atype = $archives[$ids[0]];
 			$archivePath = PHY_PUBLIC_URL . $atype . "/";
 			$count = sizeof(glob($archivePath . $ids[1] . '/*.json'));
@@ -35,6 +35,10 @@ class viewHelper extends View {
 			elseif($atype == "Articles")
 			{
 				return ($count > 1) ? $count . ' Articles' : $count . ' Article';
+			}
+			elseif($atype == "Miscellaneous")
+			{
+				return ($count > 1) ? $count . ' Items' : $count . ' Item';
 			}
 		
     }
@@ -55,7 +59,7 @@ class viewHelper extends View {
     }
 
     public function includeRandomThumbnail($id = '') {
-		$archives = array("01"=>"Letters", "02"=>"Articles");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous");
 		$archiveType = $this->getType($id);
 		$atype = $archives[$archiveType];
 		$id = $this->getActualID($id);
@@ -73,7 +77,7 @@ class viewHelper extends View {
     public function includeRandomThumbnailFromLetter($id = '') {
 		
         $ids = preg_split('/__/', $id);
-        $archives = array("01"=>"Letters", "02"=>"Articles");
+        $archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous");
         $atype = $archives[$ids[0]];
         $pages = glob(PHY_PUBLIC_URL . $atype . '/' . $ids[1] . '/' . $ids[2] .  '/thumbs/*.JPG');
         $randNum = rand(0, sizeof($pages) - 1);
@@ -99,6 +103,10 @@ class viewHelper extends View {
 			elseif($data['Type'] == "Article")
 			{
 				$pdfFilePath = ARTICLES_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+			}
+			elseif($data['Type'] == "Miscellaneous")
+			{
+				$pdfFilePath = MISCELLANEOUS_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
 			}
             
             $data['id'] = $data['albumID'] . '/' . $data['id'];
@@ -144,7 +152,7 @@ class viewHelper extends View {
 
     public function displayThumbs($id){
 		$ids = preg_split('/__/', $id);
-		$archives = array("01"=>"Letters", "02"=>"Articles");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous");
         $atype = $archives[$ids[0]];
         //~ $albumID = $this->getAlbumID($id);
         //~ $letterID = $this->getActualID($id);

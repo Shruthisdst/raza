@@ -118,7 +118,7 @@ class Model {
 
 	public function getNeighbourhood($id) {
 		$ids = preg_split('/__/', $id);
-		$archives = array("01"=>"Letters", "02"=>"Articles");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous");
         $atype = $archives[$ids[0]];
 		$albumID = $ids[1];
 		$albumPath = PHY_PUBLIC_URL . $atype . '/' . $albumID;

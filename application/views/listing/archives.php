@@ -12,7 +12,7 @@
                 <li><a>·</a></li>
                 <li><a href="#">Books</a></li>
                 <li><a>·</a></li>
-                <li><a href="#">Miscellaneous</a></li>
+                <li><a href="<?=BASE_URL?>listing/albums/04">Miscellaneous</a></li>
                 <li><a>·</a></li>
                 <li><a>Search</a></li>
                 <li id="searchForm">

@@ -63,7 +63,7 @@
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="#">
+                    <a href="<?=BASE_URL?>listing/albums/04">
                         <h2><i class="fa fa-th"></i></h2>
                         <p>Miscellaneous</p>
                     </a>

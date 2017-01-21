@@ -27,7 +27,7 @@ class data extends Controller {
 		$this->model->db->createTable(METADATA_TABLE_L4, $dbh, METADATA_TABLE_L4_SCHEMA);
 		
 		//List albums
-		$archives = array("01"=>"Letters", "02"=>"Articles");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous");
 		//~ echo $archives['02'];
 		foreach($archives as $key => $value)
 		{
