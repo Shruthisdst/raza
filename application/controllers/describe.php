@@ -12,12 +12,12 @@ class describe extends Controller {
 		$this->photo();
 	}
 
-	public function letter($albumID = DEFAULT_ALBUM, $id = '') {
+	public function archive($albumID = DEFAULT_ALBUM, $id = '') {
 
 		$data = $this->model->getLetterDetails($albumID, $id);
 		$data->neighbours = $this->model->getNeighbourhood($id);
 		
-		($data) ? $this->view('describe/letter', $data) : $this->view('error/index');
+		($data) ? $this->view('describe/archive', $data) : $this->view('error/index');
 	}
 }
 
