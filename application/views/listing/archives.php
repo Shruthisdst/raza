@@ -39,7 +39,7 @@
 <?php foreach ($data as $row) { ?>
         <div class="post">
             <?php $actualID = $viewHelper->getActualID($row->id); ?>
-            <a href="<?=BASE_URL?>describe/letter/<?=$row->albumID . '/' . $row->id?>" title="View Details">
+            <a href="<?=BASE_URL?>describe/archive/<?=$row->albumID . '/' . $row->id?>" title="View Details">
                 <img src="<?=$viewHelper->includeRandomThumbnailFromLetter($row->id)?>">
                 <?php
                     $caption = $viewHelper->getDetailByField($row->description, 'Caption');
