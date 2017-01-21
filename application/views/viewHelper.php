@@ -28,7 +28,14 @@ class viewHelper extends View {
 			$atype = $archives[$ids[0]];
 			$archivePath = PHY_PUBLIC_URL . $atype . "/";
 			$count = sizeof(glob($archivePath . $ids[1] . '/*.json'));
-			return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
+			if($atype == "Letters")
+			{
+				return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
+			}
+			elseif($atype == "Articles")
+			{
+				return ($count > 1) ? $count . ' Articles' : $count . ' Article';
+			}
 		
     }
 
