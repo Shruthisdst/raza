@@ -14,6 +14,8 @@
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/04">Miscellaneous</a></li>
                 <li><a>·</a></li>
+                <li><a href="<?=BASE_URL?>listing/albums/05">Unsorted</a></li>
+                <li><a>·</a></li>
                 <li><a>Search</a></li>
                 <li id="searchForm">
                     <form class="navbar-form" role="search" action="<?=BASE_URL?>search/field/" method="get">

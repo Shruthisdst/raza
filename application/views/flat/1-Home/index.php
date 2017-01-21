@@ -68,6 +68,12 @@
                         <p>Miscellaneous</p>
                     </a>
                 </li>
+                <li class="stat-elem">
+                    <a href="<?=BASE_URL?>listing/albums/05">
+                        <h2><i class="fa fa-sort"></i></h2>
+                        <p>Unsorted</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

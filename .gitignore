@@ -22,3 +22,11 @@ public/Miscellaneous/*.JPG
 public/Miscellaneous/*/*.JPG
 public/Miscellaneous/*/*/*.JPG
 public/Miscellaneous/*/*/*/*.JPG
+public/Unsorted/*.jpg
+public/Unsorted/*/*.jpg
+public/Unsorted/*/*/*.jpg
+public/Unsorted/*/*/*/*.jpg
+public/Unsorted/*.JPG
+public/Unsorted/*/*.JPG
+public/Unsorted/*/*/*.JPG
+public/Unsorted/*/*/*/*.JPG
