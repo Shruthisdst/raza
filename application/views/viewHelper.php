@@ -23,16 +23,17 @@ class viewHelper extends View {
     }
 
     public function getLettersCount($id = '') {
-			$ids = preg_split('/__/', $id);
-			$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
-			$atype = $archives[$ids[0]];
-			$archivePath = PHY_PUBLIC_URL . $atype . "/";
-			$count = sizeof(glob($archivePath . $ids[1] . '/*.json'));
-			if($atype == "Letters")
+
+			$archiveType = $this->getArchiveType($id);
+			$archivePath = PHY_PUBLIC_URL . $archiveType . "/";
+			$albumID = $this->getAlbumID($id);
+
+			$count = sizeof(glob($archivePath . $albumID . '/*.json'));
+			if($archiveType == "Letters")
 			{
 				return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
 			}
-			elseif($atype == "Articles")
+			elseif($archiveType == "Articles")
 			{
 				return ($count > 1) ? $count . ' Articles' : $count . ' Article';
 			}
@@ -40,30 +41,32 @@ class viewHelper extends View {
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
 			}
-		
     }
 
-    public function getActualID($combinedID) {
+    public function getAlbumID($combinedID) {
 
         return preg_replace('/^(.*)__/', '', $combinedID);
     }
-    public function getType($combinedID) {
-		
 
-        return preg_replace('/(.*)__(.*)/', '$1', $combinedID);
+    public function getArchiveType($combinedID) {
+
+		$ids = preg_split('/__/', $combinedID);
+		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
+		return $archives[$ids[0]];
     }
-    
-    public function getAlbumID($combinedID){
 
-        return preg_replace('/__(.*)/', '', $combinedID);
+    public function getPath($combinedID){
+		$archiveType = $this->getArchiveType($combinedID);
+		$ids = preg_split('/__/', $combinedID);
+		$ActualPath = PHY_PUBLIC_URL . $archiveType . '/' . $ids[1] . '/' . $ids[2];
+		return $ActualPath;
     }
 
     public function includeRandomThumbnail($id = '') {
-		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
-		$archiveType = $this->getType($id);
-		$atype = $archives[$archiveType];
-		$id = $this->getActualID($id);
-        $letters = glob(PHY_PUBLIC_URL . $atype . '/' . $id . '/*',GLOB_ONLYDIR);
+		
+		$archiveType = $this->getArchiveType($id);
+		$id = $this->getAlbumID($id);
+        $letters = glob(PHY_PUBLIC_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
         
         $randNum = rand(0, sizeof($letters) - 1);
         $letterSelected = $letters[$randNum];
@@ -75,11 +78,9 @@ class viewHelper extends View {
     }
 
     public function includeRandomThumbnailFromLetter($id = '') {
-		
-        $ids = preg_split('/__/', $id);
-        $archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
-        $atype = $archives[$ids[0]];
-        $pages = glob(PHY_PUBLIC_URL . $atype . '/' . $ids[1] . '/' . $ids[2] .  '/thumbs/*.JPG');
+        
+        $imgPath = $this->getPath($id);
+        $pages = glob($imgPath .  '/thumbs/*.JPG');
         $randNum = rand(0, sizeof($pages) - 1);
         $pageSelected = $pages[$randNum];
 
@@ -95,23 +96,24 @@ class viewHelper extends View {
         $pdfFilePath = '';
         if(isset($data['id'])) {
 			
-            $actualID = $this->getActualID($data['id']);
+            $actualID = $this->getAlbumID($data['id']);
             if($data['Type'] == "Letter")
             {
-				$pdfFilePath = LETTERS_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+				$ArchivePath = LETTERS_URL;
 			}
 			elseif($data['Type'] == "Article")
 			{
-				$pdfFilePath = ARTICLES_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+				$ArchivePath = ARTICLES_URL;
 			}
 			elseif($data['Type'] == "Miscellaneous")
 			{
-				$pdfFilePath = MISCELLANEOUS_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+				$ArchivePath = MISCELLANEOUS_URL;
 			}
 			elseif($data['Type'] == "Unsorted")
 			{
-				$pdfFilePath = UNSORTED_URL . $data['albumID'] . '/' . $actualID . '/index.pdf';
+				$ArchivePath = UNSORTED_URL;
 			}
+			$pdfFilePath = $ArchivePath . $data['albumID'] . '/' . $actualID . '/index.pdf';
             
             $data['id'] = $data['albumID'] . '/' . $data['id'];
             unset($data['albumID']);
@@ -155,12 +157,9 @@ class viewHelper extends View {
     }
 
     public function displayThumbs($id){
-		$ids = preg_split('/__/', $id);
-		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
-        $atype = $archives[$ids[0]];
-        //~ $albumID = $this->getAlbumID($id);
-        //~ $letterID = $this->getActualID($id);
-        $filesPath = PHY_PUBLIC_URL . $atype . '/' . $ids[1] . '/' . $ids[2] . '/thumbs/*' . PHOTO_FILE_EXT;
+
+        $imgPath = $this->getPath($id);
+        $filesPath = $imgPath . '/thumbs/*' . PHOTO_FILE_EXT;
         $files = glob($filesPath);
 
 

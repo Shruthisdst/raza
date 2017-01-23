@@ -41,7 +41,7 @@
                 <li class="next"><a href="<?=BASE_URL?>describe/archive/<?=$data->albumID?>/<?=$data->albumID . '__' . $data->neighbours['next']?>">Next &gt;</a></li>
                 <?php } ?>
             </ul>
-            <?php $actualID = $viewHelper->getActualID($data->id); ?>
+            <?php $actualID = $viewHelper->getAlbumID($data->id); ?>
             <?php $viewHelper->displayThumbs($data->id); ?>
         </div>            
         <div class="col-md-3">

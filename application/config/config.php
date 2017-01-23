@@ -3,7 +3,7 @@
 define('BASE_URL', 'http://192.168.1.24/raza/');
 define('PUBLIC_URL', BASE_URL . 'public/');
 define('XML_SRC_URL', BASE_URL . 'md-src/xml/');
-define('PHOTO_URL', PUBLIC_URL . 'Letters/');
+define('PHOTO_URL', PUBLIC_URL . 'Photos/');
 define('LETTERS_URL', PUBLIC_URL . 'Letters/');
 define('ARTICLES_URL', PUBLIC_URL . 'Articles/');
 define('MISCELLANEOUS_URL', PUBLIC_URL . 'Miscellaneous/');
@@ -17,7 +17,7 @@ define('RESOURCES_URL', PUBLIC_URL . 'Resources/');
 define('PHY_BASE_URL', '/var/www/raza/');
 define('PHY_PUBLIC_URL', PHY_BASE_URL . 'public/');
 define('PHY_XML_SRC_URL', PHY_BASE_URL . 'md-src/xml/');
-define('PHY_PHOTO_URL', PHY_PUBLIC_URL . 'Letters/');
+define('PHY_PHOTO_URL', PHY_PUBLIC_URL . 'Photos/');
 define('PHY_LETTERS_URL', PHY_PUBLIC_URL . 'Letters/');
 define('PHY_ARTICLES_URL', PHY_PUBLIC_URL . 'Articles/');
 define('PHY_MISCELLANEOUS_URL', PHY_PUBLIC_URL . 'Miscellaneous/');
