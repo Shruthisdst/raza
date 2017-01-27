@@ -8,7 +8,7 @@ class editModel extends Model {
 		parent::__construct();
 	}
 
-	public function editPhoto($albumID, $photoID) {
+	public function editAlbum($albumID, $photoID) {
 		
 		$ids = preg_split('/__/', $photoID);
 		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
@@ -19,7 +19,7 @@ class editModel extends Model {
 		return ($data);
 	}	
 
-	public function editAlbum($albumID) {
+	public function editArchive($albumID) {
 
 		$dbh = $this->db->connect(DB_NAME);
 		if(is_null($dbh))return null;

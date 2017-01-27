@@ -75,8 +75,6 @@ class data extends Controller {
 
 		$path = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . ".json";
 		
-		$albumUrl = BASE_URL . 'listing/archives/' . $albumIdWithType;
-		
 		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
 
 
@@ -89,7 +87,6 @@ class data extends Controller {
 		{
 			$this->view('data/writeerror');
 		}
-
 	}
 	
 	private function updateAlbumDetails($albumIdWithType, $fileContents){
@@ -99,7 +96,7 @@ class data extends Controller {
 		$this->model->updateDetailsForEachArchive($albumIdWithType, $fileContents, $dbh);
 	}
 	
-	public function updateJson($albumIdWithType) {
+	public function updateArchiveJson($albumIdWithType) {
 		
 		$data = $this->model->getPostData();
 		$fileContents = array();
@@ -114,14 +111,13 @@ class data extends Controller {
 		$archiveID = $albumIdWithType . '__' . $fileContents['id'];
 
 		$path = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . '/' . $fileContents['id'] . ".json";
-		$albumUrl = BASE_URL . 'listing/archives/' . $albumIdWithType;
 
 		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
 
 		if(file_put_contents($path, $fileContents))
 		{
-			$this->view('data/archiveDataUpdated');
 			$this->updateArchiveDetails($archiveID,$albumIdWithType,$fileContents);
+			$this->view('data/archiveDataUpdated');
 		}
 		else
 		{
