@@ -28,7 +28,6 @@ class data extends Controller {
 		
 		//List albums
 		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
-		//~ echo $archives['02'];
 		foreach($archives as $key => $value)
 		{
 			$archivePath = PHY_PUBLIC_URL . $value . "/";
@@ -39,9 +38,8 @@ class data extends Controller {
 				$this->model->insertAlbums($key, $albums, $dbh);
 
 				foreach ($albums as $album) {
-					
 
-					// List photos
+					// List files
 					$letters = $this->model->listFiles(str_replace('.json', '/', $album), 'json');
 
 					if($letters) {
@@ -60,6 +58,88 @@ class data extends Controller {
 			}
 		}
 		$dbh = null;
+	}
+	
+	public function updateAlbumJson($albumIdWithType) {
+		
+		$data = $this->model->getPostData();
+		$fileContents = array();
+		
+		foreach($data as $value){
+
+			$fileContents[$value[0]] = $value[1];
+		}
+		$archiveType = $this->model->getArchiveType($albumIdWithType);
+
+		$albumID = $fileContents['albumID'];
+
+		$path = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . ".json";
+		
+		$albumUrl = BASE_URL . 'listing/archives/' . $albumIdWithType;
+		
+		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
+
+
+		if(file_put_contents($path, $fileContents))
+		{
+			$this->updateAlbumDetails($albumIdWithType, $fileContents);
+			$this->view('data/albumDataUpdated');
+		}
+		else
+		{
+			$this->view('data/writeerror');
+		}
+
+	}
+	
+	private function updateAlbumDetails($albumIdWithType, $fileContents){
+		
+		$dbh = $this->model->db->connect(DB_NAME);
+		$this->model->db->updateAlbumDescription($albumIdWithType, $fileContents, $dbh);
+		$this->model->updateDetailsForEachArchive($albumIdWithType, $fileContents, $dbh);
+	}
+	
+	public function updateJson($albumIdWithType) {
+		
+		$data = $this->model->getPostData();
+		$fileContents = array();
+
+		foreach($data as $value){
+
+			$fileContents[$value[0]] = $value[1];
+		}
+		$archiveType = $this->model->getArchiveType($albumIdWithType);
+
+		$albumID = $fileContents['albumID'];
+		$archiveID = $albumIdWithType . '__' . $fileContents['id'];
+
+		$path = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . '/' . $fileContents['id'] . ".json";
+		$albumUrl = BASE_URL . 'listing/archives/' . $albumIdWithType;
+
+		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
+
+		if(file_put_contents($path, $fileContents))
+		{
+			$this->view('data/archiveDataUpdated');
+			$this->updateArchiveDetails($archiveID,$albumIdWithType,$fileContents);
+		}
+		else
+		{
+			$this->view('data/writeerror');
+		}
+	}
+
+	private function updateArchiveDetails($archiveID,$albumIdWithType,$fileContents){
+
+			$dbh = $this->model->db->connect(DB_NAME);
+			$albumDescription = $this->model->getAlbumDetails($albumIdWithType);
+			$albumDescription = $albumDescription->description;
+			$archiveDescription = $fileContents;
+
+			$combinedDescription = json_encode(array_merge(json_decode($archiveDescription, true), json_decode($albumDescription, true)));
+
+			$this->model->db->updateArchiveDescription($archiveID,$albumIdWithType,$combinedDescription,$dbh);
+
 	}
 }
 

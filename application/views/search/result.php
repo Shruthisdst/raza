@@ -34,7 +34,7 @@
         <div class="post">
             <?php $actualID = $viewHelper->getAlbumID($row->id); ?>
             <a href="<?=BASE_URL?>describe/archive/<?=$row->albumID . '/' . $row->id?>" title="View Details">
-                <img src="<?=$viewHelper->includeRandomThumbnailFromLetter($row->id)?>">
+                <img src="<?=$viewHelper->includeRandomThumbnailFromArchive($row->id)?>">
                 <?php
                     $caption = $viewHelper->getDetailByField($row->description, 'Caption');
                     if ($caption) echo '<p class="image-desc"><strong>' . $caption . '</strong></p>';

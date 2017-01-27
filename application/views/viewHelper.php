@@ -47,12 +47,38 @@ class viewHelper extends View {
 
         return preg_replace('/^(.*)__/', '', $combinedID);
     }
+    
+    public function getActualID($combinedID) {
+
+        return preg_replace('/^(.*)__(.*)/', '', $combinedID);
+    }
 
     public function getArchiveType($combinedID) {
 
 		$ids = preg_split('/__/', $combinedID);
 		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
 		return $archives[$ids[0]];
+    }
+    
+    public function getArchivePath($aPath) {
+
+		if($aPath == "Letter")
+        {
+			$ArchivePath = LETTERS_URL;
+		}
+		elseif($aPath == "Article")
+		{
+			$ArchivePath = ARTICLES_URL;
+		}
+		elseif($aPath == "Miscellaneous")
+		{
+			$ArchivePath = MISCELLANEOUS_URL;
+		}
+		elseif($aPath == "Unsorted")
+		{
+			$ArchivePath = UNSORTED_URL;
+		}
+		return $ArchivePath;
     }
 
     public function getPath($combinedID){
@@ -77,7 +103,7 @@ class viewHelper extends View {
         return str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $pageSelected);
     }
 
-    public function includeRandomThumbnailFromLetter($id = '') {
+    public function includeRandomThumbnailFromArchive($id = '') {
         
         $imgPath = $this->getPath($id);
         $pages = glob($imgPath .  '/thumbs/*.JPG');
@@ -97,22 +123,7 @@ class viewHelper extends View {
         if(isset($data['id'])) {
 			
             $actualID = $this->getAlbumID($data['id']);
-            if($data['Type'] == "Letter")
-            {
-				$ArchivePath = LETTERS_URL;
-			}
-			elseif($data['Type'] == "Article")
-			{
-				$ArchivePath = ARTICLES_URL;
-			}
-			elseif($data['Type'] == "Miscellaneous")
-			{
-				$ArchivePath = MISCELLANEOUS_URL;
-			}
-			elseif($data['Type'] == "Unsorted")
-			{
-				$ArchivePath = UNSORTED_URL;
-			}
+            $ArchivePath = $this->getArchivePath($data['Type']);
 			$pdfFilePath = $ArchivePath . $data['albumID'] . '/' . $actualID . '/index.pdf';
             
             $data['id'] = $data['albumID'] . '/' . $data['id'];
@@ -188,6 +199,41 @@ class viewHelper extends View {
         $privatekey = "6Le_DBsTAAAAAH8rvyqjPXU9jxY5YJxXct76slWv";
 
         echo recaptcha_get_html($publickey);
+    }
+    
+    public function displayDataInForm($json, $auxJson='') {
+
+        $data = json_decode($json, true);
+        
+        if ($auxJson) $data = array_merge($data, json_decode($auxJson, true));
+        
+        $count = 0;
+        $formgroup = 0;
+
+        foreach ($data as $key => $value) {
+             //~ echo "Key: $key; Value: $value\n";
+             if($key == 'albumID') {
+				if (preg_match('/__/', $value)) {
+				$id = preg_split('/__/', $value);
+				$value = $id[1];
+				}
+			 }
+            $disable = (($key == 'id') || ($key == 'albumID'))? 'readonly' : '';
+            echo '<div class="form-group" id="frmgroup' . $formgroup . '">' . "\n";
+            echo '<input type="text" class="form-control" name="id'. $count . '[]"  value="' . $key . '"' . $disable  . ' />&nbsp;' . "\n";
+            echo '<input type="text" class="form-control" name="id'. $count . '[]"  value="' . $value . '"' . $disable . ' />' . "\n";
+            if($disable != "readonly"){
+                echo '<input type="button"  onclick="removeUpdateDataElement(\'frmgroup'. $formgroup .'\')" value="Remove" />' . "\n";                
+            }
+            echo '</div>' . "\n";
+            $count++;
+            $formgroup++;
+        }
+
+        echo '<div id="keyvalues">' . "\n";
+        echo '</div>' . "\n";
+        echo '<input type="button" id="keyvaluebtn" onclick="addnewfields(keyvaluebtn)" value="Add New Fields" />' . "\n";
+        echo '<input type="submit" id="submit" value="Update Data" />' . "\n";
     }
 
 }

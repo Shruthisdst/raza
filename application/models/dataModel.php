@@ -7,9 +7,9 @@ class dataModel extends Model {
 		parent::__construct();
 	}
 
-	public function listFiles($path, $type) {
-		//~ echo $path . "<br />";
-		return glob($path . '*.' . $type);
+	public function listFiles($archivePath, $type) {
+
+		return glob($archivePath . '*.' . $type);
 		
 	}
 
@@ -40,6 +40,28 @@ class dataModel extends Model {
 			$data['description'] = json_encode(array_merge(json_decode($letterDescription, true), json_decode($albumDescription, true)),JSON_UNESCAPED_UNICODE);
 
 			$this->db->insertData(METADATA_TABLE_L2, $dbh, $data);
+		}
+	}
+
+	public function updateDetailsForEachArchive($albumIdWithType, $fileContents, $dbh){
+		
+		$archiveType = $this->getArchiveType($albumIdWithType);
+		$albumID = $this->getActualID($albumIdWithType);
+		$archivePath = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . '/';
+		$archives = $this->listFiles($archivePath, 'json');
+
+		if($archives){
+
+			foreach ($archives as $archive) {
+
+				$id = preg_replace('/.*\/(.*)\.json/', "$1", $archive);
+				
+				$archiveID = $albumIdWithType . "__" . $id;
+				$archiveDescription = $this->getJsonFromFile($archive);
+				$combinedDescription = json_encode(array_merge(json_decode($archiveDescription, true), json_decode($fileContents, true)));
+				$this->db->updateArchiveDescription($archiveID, $albumIdWithType,$combinedDescription,$dbh);
+				 
+			}
 		}
 	}
 

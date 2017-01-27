@@ -73,7 +73,7 @@
                     <li><a href="#">News and Events</a></li>
                     <li><a>·</a></li>
                     <li><a href="<?=BASE_URL?>#contact">Contact</a></li>
-<!--                     <li><a>·</a></li>
+                     <li><a>·</a></li>
                     <li>
 <?php
 if(isset($_SESSION['login']))
@@ -85,7 +85,7 @@ else
     echo '<a href="' . BASE_URL . 'user/login">Login</a>';
 }
 ?>
-                    </li> -->
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
