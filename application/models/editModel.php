@@ -12,7 +12,7 @@ class editModel extends Model {
 		
 		$ids = preg_split('/__/', $photoID);
 		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
-		$file = PHY_PUBLIC_URL . $archives[$ids[0]] . '/' . $ids[1] . '/' . $ids[2] . ".json";
+		$file = PHY_ARCHIVES_URL . $archives[$ids[0]] . '/' . $ids[1] . '/' . $ids[2] . ".json";
 		$photoDetails = file_get_contents($file);
 		$data = (object)json_decode($photoDetails, true);
 		$data->albumID = $albumID;

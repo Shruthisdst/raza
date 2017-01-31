@@ -25,7 +25,7 @@ class viewHelper extends View {
     public function getLettersCount($id = '') {
 
 			$archiveType = $this->getArchiveType($id);
-			$archivePath = PHY_PUBLIC_URL . $archiveType . "/";
+			$archivePath = PHY_ARCHIVES_URL . $archiveType . "/";
 			$albumID = $this->getAlbumID($id);
 
 			$count = sizeof(glob($archivePath . $albumID . '/*.json'));
@@ -84,7 +84,7 @@ class viewHelper extends View {
     public function getPath($combinedID){
 		$archiveType = $this->getArchiveType($combinedID);
 		$ids = preg_split('/__/', $combinedID);
-		$ActualPath = PHY_PUBLIC_URL . $archiveType . '/' . $ids[1] . '/' . $ids[2];
+		$ActualPath = PHY_ARCHIVES_URL . $archiveType . '/' . $ids[1] . '/' . $ids[2];
 		return $ActualPath;
     }
 
@@ -92,7 +92,7 @@ class viewHelper extends View {
 		
 		$archiveType = $this->getArchiveType($id);
 		$id = $this->getAlbumID($id);
-        $letters = glob(PHY_PUBLIC_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
+        $letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
         
         $randNum = rand(0, sizeof($letters) - 1);
         $letterSelected = $letters[$randNum];
@@ -100,7 +100,7 @@ class viewHelper extends View {
         $randNum = rand(0, sizeof($pages) - 1);
         $pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $pageSelected);
+        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
     }
 
     public function includeRandomThumbnailFromArchive($id = '') {
@@ -110,7 +110,7 @@ class viewHelper extends View {
         $randNum = rand(0, sizeof($pages) - 1);
         $pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $pageSelected);
+        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
     }
 
     public function displayFieldData($json, $auxJson='') {
@@ -181,7 +181,7 @@ class viewHelper extends View {
             $mainFile = preg_replace('/thumbs\//', '', $mainFile);
             echo '<span class="img-small">';
 
-            echo '<img class="img-responsive" data-original="'.str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $mainFile).'" src="' . str_replace(PHY_PUBLIC_URL, PUBLIC_URL, $file) . '" >';
+            echo '<img class="img-responsive" data-original="'.str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $mainFile).'" src="' . str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $file) . '" >';
 
             echo '</span>';
         }

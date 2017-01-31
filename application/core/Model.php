@@ -109,7 +109,7 @@ class Model {
 		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
         $atype = $archives[$ids[0]];
 		$albumID = $ids[1];
-		$albumPath = PHY_PUBLIC_URL . $atype . '/' . $albumID;
+		$albumPath = PHY_ARCHIVES_URL . $atype . '/' . $albumID;
 
 		$actualID = $ids[2];
 

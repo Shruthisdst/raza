@@ -47,7 +47,7 @@ class dataModel extends Model {
 		
 		$archiveType = $this->getArchiveType($albumIdWithType);
 		$albumID = $this->getActualID($albumIdWithType);
-		$archivePath = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . '/';
+		$archivePath = PHY_ARCHIVES_URL . $archiveType . '/'. $albumID . '/';
 		$archives = $this->listFiles($archivePath, 'json');
 
 		if($archives){

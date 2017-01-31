@@ -30,7 +30,7 @@ class data extends Controller {
 		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
 		foreach($archives as $key => $value)
 		{
-			$archivePath = PHY_PUBLIC_URL . $value . "/";
+			$archivePath = PHY_ARCHIVES_URL . $value . "/";
 		
 			$albums = $this->model->listFiles($archivePath, 'json');
 			if($albums) {
@@ -73,7 +73,7 @@ class data extends Controller {
 
 		$albumID = $fileContents['albumID'];
 
-		$path = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . ".json";
+		$path = PHY_ARCHIVES_URL . $archiveType . '/'. $albumID . ".json";
 		
 		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
 
@@ -86,7 +86,7 @@ class data extends Controller {
 		}
 		else
 		{
-			$this->view('data/writeerror');
+			echo "Problem in writing data to a file";
 		}
 	}
 	
@@ -111,7 +111,7 @@ class data extends Controller {
 		$albumID = $fileContents['albumID'];
 		$archiveID = $albumIdWithType . '__' . $fileContents['id'];
 
-		$path = PHY_PUBLIC_URL . $archiveType . '/'. $albumID . '/' . $fileContents['id'] . ".json";
+		$path = PHY_ARCHIVES_URL . $archiveType . '/'. $albumID . '/' . $fileContents['id'] . ".json";
 
 		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
 
@@ -123,7 +123,7 @@ class data extends Controller {
 		}
 		else
 		{
-			$this->view('data/writeerror');
+			echo "Problem in writing data to a file";
 		}
 	}
 
