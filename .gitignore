@@ -6,6 +6,10 @@ public/Letters/*.JPG
 public/Letters/*/*.JPG
 public/Letters/*/*/*.JPG
 public/Letters/*/*/*/*.JPG
+public/Letters/*.pdf
+public/Letters/*/*.pdf
+public/Letters/*/*/*.pdf
+public/Letters/*/*/*/*.pdf
 public/Articles/*.jpg
 public/Articles/*/*.jpg
 public/Articles/*/*/*.jpg
@@ -14,6 +18,10 @@ public/Articles/*.JPG
 public/Articles/*/*.JPG
 public/Articles/*/*/*.JPG
 public/Articles/*/*/*/*.JPG
+public/Articles/*.pdf
+public/Articles/*/*.pdf
+public/Articles/*/*/*.pdf
+public/Articles/*/*/*/*.pdf
 public/Miscellaneous/*.jpg
 public/Miscellaneous/*/*.jpg
 public/Miscellaneous/*/*/*.jpg
@@ -22,6 +30,10 @@ public/Miscellaneous/*.JPG
 public/Miscellaneous/*/*.JPG
 public/Miscellaneous/*/*/*.JPG
 public/Miscellaneous/*/*/*/*.JPG
+public/Miscellaneous/*.pdf
+public/Miscellaneous/*/*.pdf
+public/Miscellaneous/*/*/*.pdf
+public/Miscellaneous/*/*/*/*.pdf
 public/Unsorted/*.jpg
 public/Unsorted/*/*.jpg
 public/Unsorted/*/*/*.jpg
@@ -30,3 +42,7 @@ public/Unsorted/*.JPG
 public/Unsorted/*/*.JPG
 public/Unsorted/*/*/*.JPG
 public/Unsorted/*/*/*/*.JPG
+public/Unsorted/*.pdf
+public/Unsorted/*/*.pdf
+public/Unsorted/*/*/*.pdf
+public/Unsorted/*/*/*/*.pdf
