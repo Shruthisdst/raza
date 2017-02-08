@@ -195,10 +195,10 @@ class viewHelper extends View {
 
         require_once('vendor/recaptchalib.php');
 
-        $publickey = "6Le_DBsTAAAAACt5YrgWhjW00CcAF0XYlA30oLPc";
-        $privatekey = "6Le_DBsTAAAAAH8rvyqjPXU9jxY5YJxXct76slWv";
+        $publickey = "6Ld9gRQUAAAAABN0ern9If3yH1cIXlKV19TXu5Wj";
+        $privatekey = "6Ld9gRQUAAAAAJ7NKpEvpqlVStQk45SoPUGK1DO9";
 
-        echo recaptcha_get_html($publickey);
+        echo '<div class="g-recaptcha" data-sitekey="'. $publickey . '"></div>';
     }
     
     public function displayDataInForm($json, $auxJson='') {

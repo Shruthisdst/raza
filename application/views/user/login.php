@@ -36,11 +36,9 @@
                 </div>
                 <?php } ?>
                 <button type="submit" class="btn btn-default" value="submit" name="submit">Submit</button>
-<!--
                  <div class="form-group" id="regForm">
                     <p class="help-block gap-above"><a href="<?=BASE_URL?>user/registration">Click here to register, if you are a first time user.</a></p>
                 </div>
--->
             </form>
         </div>
         <div class="col-md-4">&nbsp;</div>
