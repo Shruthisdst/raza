@@ -11,6 +11,9 @@ define('PHOTO_FILE_EXT', '.JPG');
 define('DEFAULT_TYPE', '01');
 define('LETTERS', '01');
 define('ARTICLES', '02');
+define('BROCHURES', '03');
+define('MISCELLANEOUS', '04');
+define('UNSORTED', '05');
 
 // db table names
 define('METADATA_TABLE_L1', 'album');

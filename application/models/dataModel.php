@@ -88,7 +88,7 @@ class dataModel extends Model {
 		foreach ($lines as $file) {
 			
 			// Extract files into three bins - A->Added, M->Modified and D->Deleted. 
-			if((preg_match('/^([AMD])\s(.*)/', $file, $matches)) && ((preg_match('/public\/Archives\/Articles/', $file)) || (preg_match('/public\/Archives\/Letters/', $file)) || (preg_match('/public\/Archives\/Miscellaneous/', $file)) || (preg_match('/public\/Archives\/Unsorted/', $file)))) {
+			if((preg_match('/^([AMD])\s(.*)/', $file, $matches)) && ((preg_match('/public\/Archives\/Articles/', $file)) || (preg_match('/public\/Archives\/Brochures/', $file)) || (preg_match('/public\/Archives\/Letters/', $file)) || (preg_match('/public\/Archives\/Miscellaneous/', $file)) || (preg_match('/public\/Archives\/Unsorted/', $file)))) {
 
 				array_push($files[$matches[1]], $matches[2]);
 			}

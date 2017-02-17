@@ -37,6 +37,10 @@ class viewHelper extends View {
 			{
 				return ($count > 1) ? $count . ' Articles' : $count . ' Article';
 			}
+			elseif($archiveType == "Brochures")
+			{
+				return ($count > 1) ? $count . ' Brochures' : $count . ' Brochure';
+			}
 			else
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
@@ -56,7 +60,7 @@ class viewHelper extends View {
     public function getArchiveType($combinedID) {
 
 		$ids = preg_split('/__/', $combinedID);
-		$archives = array("01"=>"Letters", "02"=>"Articles", "04"=>"Miscellaneous", "05"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Brochures", "04"=>"Miscellaneous", "05"=>"Unsorted");
 		return $archives[$ids[0]];
     }
     
@@ -69,6 +73,10 @@ class viewHelper extends View {
 		elseif($aPath == "Article")
 		{
 			$ArchivePath = ARTICLES_URL;
+		}
+		elseif($aPath == "Brochure")
+		{
+			$ArchivePath = BROCHURES_URL;
 		}
 		elseif($aPath == "Miscellaneous")
 		{
@@ -185,7 +193,7 @@ class viewHelper extends View {
 
             echo '</span>';
         }
-        // echo $albumID . '->' . $letterID;
+         
         echo '</div>';
 
     }

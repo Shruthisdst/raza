@@ -33,15 +33,21 @@
             <h1>The Collection</h1>
             <ul class="list-inline">
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/albums/01">
+                    <a href="<?=BASE_URL?>listing/albums/<?=LETTERS?>">
                         <h2><i class="fa fa-envelope"></i></h2>
                         <p>Letters</p>
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/albums/02">
+                    <a href="<?=BASE_URL?>listing/albums/<?=ARTICLES?>">
                         <h2><i class="fa fa-file-text-o"></i></h2>
                         <p>Articles</p>
+                    </a>
+                </li>
+                <li class="stat-elem">
+                    <a href="<?=BASE_URL?>listing/albums/<?=BROCHURES?>">
+                        <h2><i class="fa fa-files-o"></i></h2>
+                        <p>Brochures</p>
                     </a>
                 </li>
                 <li class="stat-elem">
@@ -63,13 +69,13 @@
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/albums/04">
+                    <a href="<?=BASE_URL?>listing/albums/<?=MISCELLANEOUS?>">
                         <h2><i class="fa fa-th"></i></h2>
                         <p>Miscellaneous</p>
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/albums/05">
+                    <a href="<?=BASE_URL?>listing/albums/<?=UNSORTED?>">
                         <h2><i class="fa fa-sort"></i></h2>
                         <p>Unsorted</p>
                     </a>
