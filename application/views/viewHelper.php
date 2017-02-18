@@ -120,6 +120,15 @@ class viewHelper extends View {
 
         return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
     }
+    public function includeThumbnailFromBrochures($id = '') {
+        
+        $imgPath = $this->getPath($id);
+        $pages = glob($imgPath .  '/thumbs/*.JPG');
+        $randNum = rand(0, 0);
+        $pageSelected = $pages[$randNum];
+
+        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+    }
 
     public function displayFieldData($json, $auxJson='') {
 
