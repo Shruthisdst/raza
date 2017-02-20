@@ -60,7 +60,7 @@ class viewHelper extends View {
     public function getArchiveType($combinedID) {
 
 		$ids = preg_split('/__/', $combinedID);
-		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Brochures", "04"=>"Miscellaneous", "05"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
 		return $archives[$ids[0]];
     }
     
@@ -102,25 +102,17 @@ class viewHelper extends View {
 		$id = $this->getAlbumID($id);
         $letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
         
-        $randNum = rand(0, sizeof($letters) - 1);
+        $randNum = rand(0, 0);
         $letterSelected = $letters[$randNum];
         $pages = glob($letterSelected . '/thumbs/*.JPG');
-        $randNum = rand(0, sizeof($pages) - 1);
+        //~ $randNum = rand(0, sizeof($pages) - 1);
+        $randNum = rand(0, 0);
         $pageSelected = $pages[$randNum];
 
         return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
     }
 
     public function includeRandomThumbnailFromArchive($id = '') {
-        
-        $imgPath = $this->getPath($id);
-        $pages = glob($imgPath .  '/thumbs/*.JPG');
-        $randNum = rand(0, sizeof($pages) - 1);
-        $pageSelected = $pages[$randNum];
-
-        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
-    }
-    public function includeThumbnailFromBrochures($id = '') {
         
         $imgPath = $this->getPath($id);
         $pages = glob($imgPath .  '/thumbs/*.JPG');

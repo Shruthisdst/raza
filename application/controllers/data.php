@@ -27,7 +27,8 @@ class data extends Controller {
 		$this->model->db->createTable(METADATA_TABLE_L4, $dbh, METADATA_TABLE_L4_SCHEMA);
 		
 		//List albums
-		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Brochures", "04"=>"Miscellaneous", "05"=>"Unsorted");
+		//~ $archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
 		foreach($archives as $key => $value)
 		{
 			$archivePath = PHY_ARCHIVES_URL . $value . "/";

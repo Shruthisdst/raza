@@ -6,13 +6,15 @@
         <!-- Column 1 -->
         <div class="col-md-12 text-center">
             <ul class="list-inline sub-nav">
-                <li><a href="<?=BASE_URL?>listing/albums/<?=LETTERS?>">Letters</a></li>
+               <li><a href="<?=BASE_URL?>listing/albums/<?=LETTERS?>">Letters</a></li>
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/<?=ARTICLES?>">Articles</a></li>
                 <li><a>·</a></li>
-                <li><a href="<?=BASE_URL?>listing/albums/<?=BROCHURES?>">Brochures</a></li>
-                <li><a>·</a></li>
                 <li><a href="#">Books</a></li>
+                <li><a>·</a></li>
+                <li><a href="#">Photographs</a></li>
+                <li><a>·</a></li>
+                <li><a href="<?=BASE_URL?>listing/archives/<?=BROCHURES?>__001">Brochures</a></li>
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/<?=MISCELLANEOUS?>">Miscellaneous</a></li>
                 <li><a>·</a></li>
@@ -50,14 +52,8 @@
 <?php foreach ($data as $row) { ?>
         <div class="post">
             <a href="<?=BASE_URL?>describe/archive/<?=$row->albumID . '/' . $row->id?>" title="View Details">
-            <?php 
-				$archiveType = $viewHelper->getArchiveType($row->id); 
-				if($archiveType == 'Brochures'){
-			?>
-                <img src="<?=$viewHelper->includeThumbnailFromBrochures($row->id)?>">
-                <?php } else { ?>
                 <img src="<?=$viewHelper->includeRandomThumbnailFromArchive($row->id)?>">
-                <?php }
+                <?php 
                     $caption = $viewHelper->getDetailByField($row->description, 'Caption');
                     if ($caption) echo '<p class="image-desc"><strong>' . $caption . '</strong></p>';
                 ?>
