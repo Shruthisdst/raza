@@ -7,7 +7,7 @@
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/<?=ARTICLES?>">Articles</a></li>
                 <li><a>·</a></li>
-                <li><a href="#">Books</a></li>
+                <li><a href="<?=BASE_URL?>listing/archives/<?=BOOKS?>__001">Books</a></li>
                 <li><a>·</a></li>
                 <li><a href="#">Photographs</a></li>
                 <li><a>·</a></li>

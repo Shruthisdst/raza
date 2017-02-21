@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="#">
+                    <a href="<?=BASE_URL?>listing/archives/<?=BOOKS?>__001">
                         <h2><i class="fa fa-book"></i></h2>
                         <p>Books</p>
                     </a>

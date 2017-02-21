@@ -10,7 +10,7 @@
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/<?=ARTICLES?>">Articles</a></li>
                 <li><a>·</a></li>
-                <li><a href="#">Books</a></li>
+                <li><a href="<?=BASE_URL?>listing/archives/<?=BOOKS?>__001">Books</a></li>
                 <li><a>·</a></li>
                 <li><a href="#">Photographs</a></li>
                 <li><a>·</a></li>
@@ -54,7 +54,7 @@
             <a href="<?=BASE_URL?>describe/archive/<?=$row->albumID . '/' . $row->id?>" title="View Details">
                 <img src="<?=$viewHelper->includeRandomThumbnailFromArchive($row->id)?>">
                 <?php 
-                    $caption = $viewHelper->getDetailByField($row->description, 'Caption');
+                    $caption = $viewHelper->getDetailByField($row->description, 'title');
                     if ($caption) echo '<p class="image-desc"><strong>' . $caption . '</strong></p>';
                 ?>
             </a>

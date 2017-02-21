@@ -28,7 +28,7 @@ class data extends Controller {
 		
 		//List albums
 		//~ $archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
-		$archives = array("01"=>"Letters", "02"=>"Articles", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
 		foreach($archives as $key => $value)
 		{
 			$archivePath = PHY_ARCHIVES_URL . $value . "/";

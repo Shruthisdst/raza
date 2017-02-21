@@ -41,6 +41,10 @@ class viewHelper extends View {
 			{
 				return ($count > 1) ? $count . ' Brochures' : $count . ' Brochure';
 			}
+			elseif($archiveType == "Books")
+			{
+				return ($count > 1) ? $count . ' Books' : $count . ' Book';
+			}
 			else
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
@@ -73,6 +77,10 @@ class viewHelper extends View {
 		elseif($aPath == "Article")
 		{
 			$ArchivePath = ARTICLES_URL;
+		}
+		elseif($aPath == "Book")
+		{
+			$ArchivePath = BOOKS_URL;
 		}
 		elseif($aPath == "Brochure")
 		{
