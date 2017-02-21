@@ -134,6 +134,7 @@ class viewHelper extends View {
             $actualID = $this->getAlbumID($data['id']);
             $ArchivePath = $this->getArchivePath($data['Type']);
 			$pdfFilePath = $ArchivePath . $data['albumID'] . '/' . $actualID . '/index.pdf';
+			$phypdfFilePath = str_replace(ARCHIVES_URL, PHY_ARCHIVES_URL, $pdfFilePath);
             
             $data['id'] = $data['albumID'] . '/' . $data['id'];
             unset($data['albumID']);
@@ -167,10 +168,9 @@ class viewHelper extends View {
 
         // $html .= '<li>Do you know details about this picture? Mail us at heritage@iitm.ac.in quoting the image ID. Thank you.</li>';
 
-        if($pdfFilePath != ''){
+        if(file_exists($phypdfFilePath)){
             $html .= '<li><a href="'.$pdfFilePath.'" target="_blank">Click here to view PDF</a></li>'; 
         }
-
         $html .= '</ul>';
 
         return $html;
