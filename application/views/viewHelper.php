@@ -168,7 +168,7 @@ class viewHelper extends View {
 
         // $html .= '<li>Do you know details about this picture? Mail us at heritage@iitm.ac.in quoting the image ID. Thank you.</li>';
 
-        if(file_exists($phypdfFilePath)){
+        if(isset($phypdfFilePath) && file_exists($phypdfFilePath)){
             $html .= '<li><a href="'.$pdfFilePath.'" target="_blank">Click here to view PDF</a></li>'; 
         }
         $html .= '</ul>';
@@ -188,11 +188,11 @@ class viewHelper extends View {
 
             $mainFile = $file;
             $mainFile = preg_replace('/thumbs\//', '', $mainFile);
-            echo '<span class="img-small">';
+            //~ echo '<span class="img-small">';
 
-            echo '<img class="img-responsive" data-original="'.str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $mainFile).'" src="' . str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $file) . '" >';
+            echo '<img class="img-small img-responsive" data-original="'.str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $mainFile).'" src="' . str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $file) . '" >';
 
-            echo '</span>';
+            //~ echo '</span>';
         }
          
         echo '</div>';
