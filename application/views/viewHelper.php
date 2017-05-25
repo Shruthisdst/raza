@@ -94,6 +94,10 @@ class viewHelper extends View {
 		{
 			$ArchivePath = UNSORTED_URL;
 		}
+		elseif($aPath == "Photographs")
+		{
+			$ArchivePath = UNSORTED_URL;
+		}
 		return $ArchivePath;
     }
 
