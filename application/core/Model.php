@@ -126,7 +126,7 @@ class Model {
 			$data['next'] = (isset($files[$match+1])) ? preg_replace("/.*\/(.*)\.json/", "$1", $files[$match+1]) : '';
 
 			return $data;
-		}	
+		}
 		else{
 
 			return False;
@@ -175,6 +175,72 @@ class Model {
 
         return '';
     }
+    
+    public function getAlbumID($combinedID) {
+
+        return preg_replace('/^(.*)__/', '', $combinedID);
+    }
+    
+    public function includeRandomThumbnail($id = '') {
+		
+		$archiveType = $this->getArchiveType($id);
+		$id = $this->getAlbumID($id);
+        $letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
+        
+        $randNum = rand(0, 0);
+        $letterSelected = $letters[$randNum];
+        $pages = glob($letterSelected . '/thumbs/*.JPG');
+        //~ $randNum = rand(0, sizeof($pages) - 1);
+        $randNum = rand(0, 0);
+        $pageSelected = $pages[$randNum];
+
+        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+    }
+    
+    public function getLettersCount($id = '') {
+
+			$archiveType = $this->getArchiveType($id);
+			$archivePath = PHY_ARCHIVES_URL . $archiveType . "/";
+			$albumID = $this->getAlbumID($id);
+
+			$count = sizeof(glob($archivePath . $albumID . '/*.json'));
+			if($archiveType == "Letters")
+			{
+				return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
+			}
+			elseif($archiveType == "Articles")
+			{
+				return ($count > 1) ? $count . ' Articles' : $count . ' Article';
+			}
+			elseif($archiveType == "Brochures")
+			{
+				return ($count > 1) ? $count . ' Brochures' : $count . ' Brochure';
+			}
+			elseif($archiveType == "Books")
+			{
+				return ($count > 1) ? $count . ' Books' : $count . ' Book';
+			}
+			else
+			{
+				return ($count > 1) ? $count . ' Items' : $count . ' Item';
+			}
+    }
+    public function getPath($combinedID){
+		$archiveType = $this->getArchiveType($combinedID);
+		$ids = preg_split('/__/', $combinedID);
+		$ActualPath = PHY_ARCHIVES_URL . $archiveType . '/' . $ids[1] . '/' . $ids[2];
+		return $ActualPath;
+    }
+    public function includeRandomThumbnailFromArchive($id = '') {
+        
+        $imgPath = $this->getPath($id);
+        $pages = glob($imgPath .  '/thumbs/*.JPG');
+        $randNum = rand(0, 0);
+        $pageSelected = $pages[$randNum];
+
+        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+    }
+    
 }
 
 ?>
