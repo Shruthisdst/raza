@@ -54,7 +54,7 @@ $(document).ready(function(){
             },
             success: function(data){
                 processing = true;
-                 console.log(data);
+                 //console.log(data);
                 var gutter = parseInt(jQuery('.post').css('marginBottom'));
                 var $grid = $('#posts').masonry({
                     gutter: gutter,
@@ -64,6 +64,7 @@ $(document).ready(function(){
                 });
                 var obj = JSON.parse(data);
                 var displayString = "";
+                
                 for(i=0;i<Object.keys(obj).length-2;i++)
                 {                    
                     // console.log(obj[i].Randomimage);    
@@ -83,7 +84,7 @@ $(document).ready(function(){
 
                 }
 
-                var $content = $(displayString); 
+                var $content = $(displayString);
                 $content.css('display','none');
 
                 $grid.append($content).imagesLoaded(
@@ -92,7 +93,7 @@ $(document).ready(function(){
                         $grid.masonry('appended', $content);
                         processing = false;
                     }
-                );                                     
+                );
 
                 displayString = "";
 
