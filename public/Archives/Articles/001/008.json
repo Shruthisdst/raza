@@ -1,10 +1,10 @@
 {
-	"id":"008",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "008",
+    "Type": "Article",
+    "Date": "10-11-1961",
+    "Media": "Journal",
+    "Media Title": "Journal de L'Amateur  d'Art",
+    "Place": "Paris",
+    "Agency": "Argus de la Presse",
+    "Misc": ""
 }

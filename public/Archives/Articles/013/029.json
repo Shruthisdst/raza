@@ -1,10 +1,10 @@
 {
-	"id":"029",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "029",
+    "Type": "Article",
+    "Date": "",
+    "Media": "News Paper",
+    "Media Title": "La Flandre Liberale",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }

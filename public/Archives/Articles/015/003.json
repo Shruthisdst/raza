@@ -1,10 +1,10 @@
 {
-	"id":"003",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "003",
+    "Type": "Article",
+    "Date": "15-03-1991",
+    "Media": "News Paper",
+    "Media Title": "India Today",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }

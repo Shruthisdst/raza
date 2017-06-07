@@ -1,10 +1,10 @@
 {
-	"id":"222",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "222",
+    "Type": "Article",
+    "Date": "04-09-2014",
+    "Media": "News Paper",
+    "Media Title": "The Economic Times",
+    "Place": "New Delhi",
+    "Agency": "Media Clipping Bureau",
+    "Misc": ""
 }

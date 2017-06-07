@@ -1,10 +1,10 @@
 {
-	"id":"005",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "005",
+    "Type": "Article",
+    "Date": "06-11-1994",
+    "Media": "News Paper",
+    "Media Title": "Times of India",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }

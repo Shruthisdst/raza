@@ -1,10 +1,10 @@
 {
-	"id":"011",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "011",
+    "Type": "Article",
+    "Date": "02-06-1994",
+    "Media": "News Paper",
+    "Media Title": "Le Monde",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }

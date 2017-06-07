@@ -1,10 +1,10 @@
 {
-	"id":"002",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "002",
+    "Type": "Article",
+    "Date": "",
+    "Media": "Journal",
+    "Media Title": "L'officiel Des Arts",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }

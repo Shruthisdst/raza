@@ -1,10 +1,10 @@
 {
-	"id":"005",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "005",
+    "Type": "Article",
+    "Date": "27-06-1986",
+    "Media": "News Paper",
+    "Media Title": "Invitation",
+    "Place": "Bombay",
+    "Agency": "",
+    "Misc": ""
 }

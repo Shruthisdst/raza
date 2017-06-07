@@ -1,10 +1,10 @@
 {
-	"id":"060",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "060",
+    "Type": "Article",
+    "Date": "",
+    "Media": "Journal",
+    "Media Title": "Report from Paris",
+    "Place": "Paris",
+    "Agency": "",
+    "Misc": ""
 }

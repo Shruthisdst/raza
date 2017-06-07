@@ -1,10 +1,10 @@
 {
-	"id":"008",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "008",
+    "Type": "Article",
+    "Date": "00-06-1991, 00-07-1991",
+    "Media": "Magazine",
+    "Media Title": "Le Figaro, Maison Cote Sud, Beaux-Arts",
+    "Place": "Paris",
+    "Agency": "Argus de la Presse",
+    "Misc": ""
 }

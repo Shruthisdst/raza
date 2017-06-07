@@ -1,10 +1,10 @@
 {
-	"id":"002",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "002",
+    "Type": "Article",
+    "Date": "23-06-1956",
+    "Media": "News Paper",
+    "Media Title": "Le Figaro Litteraire",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }

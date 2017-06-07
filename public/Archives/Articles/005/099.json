@@ -1,10 +1,10 @@
 {
-	"id":"099",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "099",
+    "Type": "Article",
+    "Date": "30-03-2014",
+    "Media": "News Paper",
+    "Media Title": "The Tribune",
+    "Place": "Chandigarh",
+    "Agency": "Media Clipping Bureau",
+    "Misc": ""
 }

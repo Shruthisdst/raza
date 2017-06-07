@@ -1,10 +1,10 @@
 {
-	"id":"010",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "010",
+    "Type": "Article",
+    "Date": "11-05-1982",
+    "Media": "News Paper",
+    "Media Title": "Le Dauphine Libere",
+    "Place": "Paris",
+    "Agency": "Argus de la Presse",
+    "Misc": ""
 }

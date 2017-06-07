@@ -1,10 +1,10 @@
 {
-	"id":"023",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "023",
+    "Type": "Article",
+    "Date": "22-02-1995",
+    "Media": "News Paper",
+    "Media Title": "Figaroscope",
+    "Place": "Paris",
+    "Agency": "Argus de la Presse",
+    "Misc": ""
 }

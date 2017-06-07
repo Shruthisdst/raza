@@ -1,10 +1,10 @@
 {
-	"id":"003",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "003",
+    "Type": "Article",
+    "Date": "23-02-2008",
+    "Media": "News Paper",
+    "Media Title": "The Arts",
+    "Place": "New Delhi",
+    "Agency": "",
+    "Misc": ""
 }

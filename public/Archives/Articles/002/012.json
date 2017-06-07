@@ -1,10 +1,10 @@
 {
-	"id":"012",
-	"Type":"Article",
-	"Article-title":"",
-	"Media":"",
-	"Date":"",
-	"Place":"",
-	"Language":"",
-	"Keywords":""
+    "id": "012",
+    "Type": "Article",
+    "Date": "",
+    "Media": "News Paper",
+    "Media Title": "Art Review",
+    "Place": "",
+    "Agency": "",
+    "Misc": ""
 }
