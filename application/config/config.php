@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', 'http://192.168.1.24/raza/');
+define('BASE_URL', 'http://192.168.1.67/raza/');
 define('PUBLIC_URL', BASE_URL . 'public/');
 define('XML_SRC_URL', BASE_URL . 'md-src/xml/');
 define('ARCHIVES_URL', PUBLIC_URL . 'Archives/');
@@ -11,13 +11,15 @@ define('PHOTO_URL', ARCHIVES_URL . 'Photographs/');
 define('BROCHURES_URL', ARCHIVES_URL . 'Brochures/');
 define('MISCELLANEOUS_URL', ARCHIVES_URL . 'Miscellaneous/');
 define('UNSORTED_URL', ARCHIVES_URL . 'Unsorted/');
+define('PHOTOGRAPHS_URL', ARCHIVES_URL . 'Photographs/');
 define('DOWNLOAD_URL', PUBLIC_URL . 'Downloads/');
 define('FLAT_URL', BASE_URL . 'application/views/flat/');
 define('STOCK_IMAGE_URL', PUBLIC_URL . 'images/stock/');
 define('RESOURCES_URL', PUBLIC_URL . 'Resources/');
+define('JSON_PRECAST_URL', BASE_URL . 'json-precast/');
 
 // Physical location of resources
-define('PHY_BASE_URL', '/var/www/raza/');
+define('PHY_BASE_URL', '/var/www/html/raza/');
 define('PHY_PUBLIC_URL', PHY_BASE_URL . 'public/');
 define('PHY_XML_SRC_URL', PHY_BASE_URL . 'md-src/xml/');
 define('PHY_ARCHIVES_URL', PHY_PUBLIC_URL . 'Archives/');

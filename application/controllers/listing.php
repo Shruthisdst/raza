@@ -62,6 +62,13 @@ class listing extends Controller {
 		}
 		
 	}
+	
+	public function collections($archive){
+		
+		//~  Album id for book archive is hardcoded, have to change
+		$result = $this->model->listCollections($archive);
+		($result) ? $result['albumID'] = "03__001" and $this->view('listing/collections', $result) : $this->view('error/index');
+	}
 }
 
 ?>

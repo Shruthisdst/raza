@@ -1,9 +1,10 @@
 <?php
 
 class Controller {
-
+	
+	public $archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
 	public function __construct() {
-
+		
 		session_start();
 	}
 

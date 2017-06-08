@@ -94,6 +94,15 @@ class listingModel extends Model {
 		
 		return $data;
 	}
+	
+	public function listCollections($archive) {
+		
+		$collectionsFile = JSON_PRECAST_URL . $this->archives[$archive] . ".json";
+		$jsonData = file_get_contents($collectionsFile);
+		$data = json_decode($jsonData,true);
+		return $data;
+	}
+	
 }
 
 ?>

@@ -19,6 +19,14 @@ class describe extends Controller {
 		
 		($data) ? $this->view('describe/archive', $data) : $this->view('error/index');
 	}
+	
+	public function collections($archive, $collectionID) {
+		
+		$data = $this->model->getCollectionList($archive, $collectionID);
+		$data['albumID'] = BOOKS . '__001';
+		
+		($data) ? $this->view('describe/collections', $data) : $this->view('error/index');
+	}
 }
 
 ?>

@@ -40,6 +40,20 @@ class describeModel extends Model {
 		$dbh = null;
 		return $result;
 	}
+	
+	public function getCollectionList($archive, $collectionID){
+		
+		$collectionsFile = JSON_PRECAST_URL . $this->archives[$archive] . ".json";
+		$jsonData = file_get_contents($collectionsFile);
+		$data = json_decode($jsonData,true);
+		
+		foreach ($data as $collection){
+  			if($collection['collectionID'] == $collectionID){
+			
+				return $collection;
+  			}
+		}
+	}
 }
 
 ?>
