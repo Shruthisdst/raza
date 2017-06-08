@@ -45,7 +45,7 @@
         <div class="post">
             <a href="<?=BASE_URL?>describe/collections/<?=$archive?>/<?=$row['collectionID']?>" title="View Collections">
                 <div class="fixOverlayDiv">
-                    <img class="img-responsive" src="<?=$viewHelper->includeRandomThumbnail($albumID)?>">
+                    <img class="img-responsive" src="<?=$viewHelper->includeRandomThumbnailFromArchive($albumID . "__" . $row['booklist'][rand(0, count($row['booklist'])-1)])?>">
                     <div class="OverlayText"><?=count($row['booklist'])?> Collectoins<br /><span class="link"><i class="fa fa-link"></i></span></div>
                 </div>
                 <p class="image-desc">
