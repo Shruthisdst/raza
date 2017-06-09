@@ -45,7 +45,10 @@
     <div id="posts">
         <div class="post no-border">
             <div class="image-desc-full">
-                <?=$data['name']?>
+				<p class="image-desc">
+                    <strong><?=$data['name']?></strong>
+                </p>
+                
                 <?php if(isset($_SESSION['login'])) {?>
                 <ul class="list-unstyled">
                     <li>
