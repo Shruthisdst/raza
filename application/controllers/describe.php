@@ -23,7 +23,7 @@ class describe extends Controller {
 	public function collections($archive, $collectionID) {
 		
 		$data = $this->model->getCollectionList($archive, $collectionID);
-		$data['albumID'] = BOOKS . '__001';
+		$data['albumID'] = $archive . '__001';
 		
 		($data) ? $this->view('describe/collections', $data) : $this->view('error/index');
 	}

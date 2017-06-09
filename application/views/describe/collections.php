@@ -55,10 +55,13 @@
                 <?php } ?>
             </div>
         </div>
-<?php foreach ($data['booklist'] as $row) { ?>
+<?php foreach ($data['details'] as $row) { ?>
         <div class="post">
-            <a href="<?=BASE_URL?>describe/archive/<?=$albumID . '/' . $albumID . "__" . $row?>" title="View Details">
-                <img src="<?=$viewHelper->includeRandomThumbnailFromArchive($albumID . "__" . $row)?>">
+            <a href="<?=BASE_URL?>describe/archive/<?=$albumID . '/' . $albumID . "__" . $row['id']?>" title="View Details">
+                <img src="<?=$viewHelper->includeRandomThumbnailFromArchive($albumID . "__" . $row['id'])?>">
+                <p class="image-desc">
+                    <strong><?=$row['title']?></strong>
+                </p>
             </a>
         </div>
 <?php } ?>

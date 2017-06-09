@@ -43,13 +43,28 @@ class describeModel extends Model {
 	
 	public function getCollectionList($archive, $collectionID){
 		
+		
+		$dbh = $this->db->connect(DB_NAME);
+		if(is_null($dbh))return null;
+		
 		$collectionsFile = JSON_PRECAST_URL . $this->archives[$archive] . ".json";
 		$jsonData = file_get_contents($collectionsFile);
 		$data = json_decode($jsonData,true);
 		
 		foreach ($data as $collection){
+			
   			if($collection['collectionID'] == $collectionID){
 			
+				foreach($collection['booklist'] as $id){
+					
+					$sth = $dbh->prepare('SELECT * FROM ' . METADATA_TABLE_L2 . ' WHERE id=:id');
+					$archiveID = $archive . "__001__" . $id;
+					$sth->bindParam(':id', $archiveID);
+					$sth->execute();
+					$result = $sth->fetch(PDO::FETCH_ASSOC);
+					$jsonArray = json_decode($result['description']);
+					$collection['details'][]= array('title' => $jsonArray->title, 'id'=>$id);
+				}
 				return $collection;
   			}
 		}
