@@ -76,16 +76,15 @@ class data extends Controller {
 
 		$path = PHY_ARCHIVES_URL . $archiveType . '/'. $albumID . ".json";
 
-		$Url =  ARCHIVES_URL . $archiveType . '/'. $albumID;
-		
 		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
 
 
 		if(file_put_contents($path, $fileContents))
 		{
 			$this->updateAlbumDetails($albumIdWithType, $fileContents);
-			//~ $this->view('data/albumDataUpdated');
-			$this->absoluteRedirect($Url);
+			 //~ $this->view('data/albumDataUpdated');
+			$ids = preg_split('/__/', $albumIdWithType);
+			$this->absoluteRedirect('/listing/albums/' . $ids[0]);
 			//~ $this->updateRepo();
 		}
 		else
@@ -117,7 +116,6 @@ class data extends Controller {
 
 		$path = PHY_ARCHIVES_URL . $archiveType . '/'. $albumID . '/' . $fileContents['id'] . ".json";
 
-		$archiveUrl = ARCHIVES_URL . $archiveType . '/'. $albumID . '/' . $fileContents['id'];
 
 		$fileContents = json_encode($fileContents,JSON_UNESCAPED_UNICODE);
 
@@ -125,7 +123,7 @@ class data extends Controller {
 		{
 			$this->updateArchiveDetails($archiveID,$albumIdWithType,$fileContents);
 			//~ $this->view('data/archiveDataUpdated');
-			$this->absoluteRedirect($archiveUrl);
+			$this->absoluteRedirect('describe/archive/' . $albumIdWithType . '/' . $archiveID);
 			//~ $this->updateRepo();
 		}
 		else
