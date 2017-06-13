@@ -83,7 +83,6 @@ class data extends Controller {
 		{
 			$this->updateAlbumDetails($albumIdWithType, $fileContents);
 			 //~ $this->view('data/albumDataUpdated');
-			$ids = preg_split('/__/', $albumIdWithType);
 			$this->absoluteRedirect('/listing/archives/' . $albumIdWithType);
 			//~ $this->updateRepo();
 		}
