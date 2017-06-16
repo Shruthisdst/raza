@@ -55,7 +55,7 @@ class Controller {
 
 	public function absoluteRedirect($path) {
 
-		@header('Location: ' . BASE_URL . $path);
+		@header('Location: ' . $path);
 	}
 
 }

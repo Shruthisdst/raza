@@ -15,7 +15,7 @@
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/collections/<?=BOOKS?>">Books</a></li>
                 <li><a>·</a></li>
-                <li><a href="<?=BASE_URL?>listing/archives/<?=PHOTOGRAPHS?>__001">Photographs</a></li>
+                <li><a href="<?=BASE_URL?>listing/albums/<?=PHOTOGRAPHS?>">Photographs</a></li>
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/archives/<?=BROCHURES?>__001">Brochures</a></li>
                 <li><a>·</a></li>

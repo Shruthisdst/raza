@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/archives/<?=PHOTOGRAPHS?>__001">
+                    <a href="<?=BASE_URL?>listing/albums/<?=PHOTOGRAPHS?>">
                         <h2><i class="fa fa-image"></i></h2>
                         <p>Photographs</p>
                     </a>

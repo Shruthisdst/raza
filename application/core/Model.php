@@ -185,14 +185,25 @@ class Model {
 		
 		$archiveType = $this->getArchiveType($id);
 		$id = $this->getAlbumID($id);
-        $letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
+		if($archiveType == 'Photographs')
+		{
+			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*.JPG');
+			$letterSelected = $letters[0];
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $letterSelected);
+		}
+		else
+		{
+			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
         
-        $randNum = rand(0, 0);
-        $letterSelected = $letters[$randNum];
-        $pages = glob($letterSelected . '/thumbs/*.JPG');
-        //~ $randNum = rand(0, sizeof($pages) - 1);
-        $randNum = rand(0, 0);
-        $pageSelected = $pages[$randNum];
+			$randNum = rand(0, 0);
+			$letterSelected = $letters[$randNum];
+			$pages = glob($letterSelected . '/thumbs/*.JPG');
+			//~ $randNum = rand(0, sizeof($pages) - 1);
+			$randNum = rand(0, 0);
+			$pageSelected = $pages[$randNum];
+
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+		}
 
         return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
     }
@@ -220,6 +231,10 @@ class Model {
 			{
 				return ($count > 1) ? $count . ' Books' : $count . ' Book';
 			}
+			elseif($archiveType == "Photographs")
+			{
+				return ($count > 1) ? $count . ' Photos' : $count . ' Photo';
+			}
 			else
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
@@ -233,12 +248,22 @@ class Model {
     }
     public function includeRandomThumbnailFromArchive($id = '') {
         
-        $imgPath = $this->getPath($id);
-        $pages = glob($imgPath .  '/thumbs/*.JPG');
-        $randNum = rand(0, 0);
-        $pageSelected = $pages[$randNum];
+        $archiveType = $this->getArchiveType($id);
+		if($archiveType == 'Photographs')
+		{
+			$ids = preg_split('/__/', $id);
+			$ActualPath = PHY_ARCHIVES_URL . $archiveType . '/' . $ids[1] . '/thumbs/' . $ids[2] . '.JPG';
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $ActualPath);
+		}
+		else
+		{        
+			$imgPath = $this->getPath($id);
+			$pages = glob($imgPath .  '/thumbs/*.JPG');
+			$randNum = rand(0, 0);
+			$pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+		}
     }
     
 }

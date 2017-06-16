@@ -20,12 +20,44 @@ class search extends Controller {
 		// Check if any data is posted. For this journal name should be excluded.
 		if($data) {
 
-			$data = $this->model->preProcessPOST($data);
+			if(!(isset($data["page"]))){
 			
-			$query = $this->model->formGeneralQuery($data, METADATA_TABLE_L2);
+				$data["page"] = 1;
+			}
+	
+			$perPage = 10;
 
+			$page = $data["page"];
+
+			unset($data['page']);
+
+			$data = $this->model->preProcessPOST($data);
+
+			$limit = ' LIMIT ' . ($page - 1) * $perPage . ', ' . $perPage;
+
+			$query = $this->model->formGeneralQuery($data, METADATA_TABLE_L2,'',$limit);
+
+			// var_dump($query);
 			$result = $this->model->executeQuery($query);
-			($result) ? $this->view('search/result', $result) : $this->view('error/noResults', 'search/index/');
+			if(!empty($result)){
+
+				$result["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
+				// var_dump($result);
+			}
+			else{
+
+				$result["hidden"] = '<div class="lastpage"></div>';
+			}
+
+			$result['sterm'] = $data["description"];
+
+			if($page == 1){
+
+				($result)? $this->view('search/result', $result) : $this->view('error/noResults', 'search/index/');
+			}
+			else{
+				echo json_encode($result);
+			}
 		}
 		else {
 

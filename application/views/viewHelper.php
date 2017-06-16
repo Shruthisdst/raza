@@ -45,6 +45,10 @@ class viewHelper extends View {
 			{
 				return ($count > 1) ? $count . ' Books' : $count . ' Book';
 			}
+			elseif($archiveType == "Photographs")
+			{
+				return ($count > 1) ? $count . ' Photos' : $count . ' Photo';
+			}
 			else
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
@@ -112,26 +116,45 @@ class viewHelper extends View {
 		
 		$archiveType = $this->getArchiveType($id);
 		$id = $this->getAlbumID($id);
-        $letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
+		if($archiveType == 'Photographs')
+		{
+			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*.JPG');
+			$letterSelected = $letters[0];
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $letterSelected);
+		}
+		else
+		{
+			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
         
-        $randNum = rand(0, 0);
-        $letterSelected = $letters[$randNum];
-        $pages = glob($letterSelected . '/thumbs/*.JPG');
-        //~ $randNum = rand(0, sizeof($pages) - 1);
-        $randNum = rand(0, 0);
-        $pageSelected = $pages[$randNum];
+			$randNum = rand(0, 0);
+			$letterSelected = $letters[$randNum];
+			$pages = glob($letterSelected . '/thumbs/*.JPG');
+			//~ $randNum = rand(0, sizeof($pages) - 1);
+			$randNum = rand(0, 0);
+			$pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+		}
     }
 
     public function includeRandomThumbnailFromArchive($id = '') {
-        
-        $imgPath = $this->getPath($id);
-        $pages = glob($imgPath .  '/thumbs/*.JPG');
-        $randNum = rand(0, 0);
-        $pageSelected = $pages[$randNum];
+		
+		$archiveType = $this->getArchiveType($id);
+		if($archiveType == 'Photographs')
+		{
+			$ids = preg_split('/__/', $id);
+			$ActualPath = PHY_ARCHIVES_URL . $archiveType . '/' . $ids[1] . '/thumbs/' . $ids[2] . '.JPG';
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $ActualPath);
+		}
+		else
+		{        
+			$imgPath = $this->getPath($id);
+			$pages = glob($imgPath .  '/thumbs/*.JPG');
+			$randNum = rand(0, 0);
+			$pageSelected = $pages[$randNum];
 
-        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
+		}
     }
 
     public function displayFieldData($json, $auxJson='') {
@@ -189,25 +212,36 @@ class viewHelper extends View {
     }
 
     public function displayThumbs($id){
+		
+		$archiveType = $this->getArchiveType($id);
+		if($archiveType == 'Photographs')
+		{
+			$ids = preg_split('/__/', $id);
+			 echo '<div id="viewletterimages" class="image-full-size">';
+             echo '<img class="img-responsive" src="' . PHOTO_URL . $ids[1] . '/' . $ids[2] . '.JPG">';
+             echo '</div>';
+		}
+		else
+		{
+			$imgPath = $this->getPath($id);
+			$filesPath = $imgPath . '/thumbs/*' . PHOTO_FILE_EXT;
+			$files = glob($filesPath);
+		
 
-        $imgPath = $this->getPath($id);
-        $filesPath = $imgPath . '/thumbs/*' . PHOTO_FILE_EXT;
-        $files = glob($filesPath);
+			echo '<div id="viewletterimages" class="letter_thumbnails">';
+			foreach ($files as $file) {
 
+				$mainFile = $file;
+				$mainFile = preg_replace('/thumbs\//', '', $mainFile);
+				//~ echo '<span class="img-small">';
 
-        echo '<div id="viewletterimages" class="letter_thumbnails">';
-        foreach ($files as $file) {
+				echo '<img class="img-small img-responsive" data-original="'.str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $mainFile).'" src="' . str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $file) . '" >';
 
-            $mainFile = $file;
-            $mainFile = preg_replace('/thumbs\//', '', $mainFile);
-            //~ echo '<span class="img-small">';
-
-            echo '<img class="img-small img-responsive" data-original="'.str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $mainFile).'" src="' . str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $file) . '" >';
-
-            //~ echo '</span>';
-        }
-         
-        echo '</div>';
+				//~ echo '</span>';
+			}
+			 
+			echo '</div>';
+		}
 
     }
 
