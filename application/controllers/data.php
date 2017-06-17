@@ -86,7 +86,7 @@ class data extends Controller {
 			$this->updateAlbumDetails($albumIdWithType, $fileContents);
 			 //~ $this->view('data/albumDataUpdated');
 			$this->absoluteRedirect($Url);
-			//~ $this->updateRepo();
+			$this->updateRepo();
 		}
 		else
 		{
@@ -127,7 +127,7 @@ class data extends Controller {
 			$this->updateArchiveDetails($archiveID,$albumIdWithType,$fileContents);
 			//~ $this->view('data/archiveDataUpdated');
 			$this->absoluteRedirect($Url);
-			//~ $this->updateRepo();
+			$this->updateRepo();
 		}
 		else
 		{
