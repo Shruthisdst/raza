@@ -41,7 +41,7 @@
 $(document).ready(function(){
 
     var processing = false;
-    var archive = <?php echo  '"' . $archive . '"';  ?>;
+    var archive = "<?=$archive?>";
 
     function getresult(url) {
         processing = true;
@@ -49,8 +49,9 @@ $(document).ready(function(){
             url: url,
             type: "GET",
             
-            complete: function(){
-                $('#loader-icon').hide();
+            beforeSend: function(){
+
+                $('#loader-icon').show();
             },
             success: function(data){
                 processing = true;
@@ -62,25 +63,24 @@ $(document).ready(function(){
                     itemSelector: '.post',
                     columnWidth: '.post',
                 });
+
                 var obj = JSON.parse(data);
                 var displayString = "";
                 
                 for(i=0;i<Object.keys(obj).length-2;i++)
-                {                    
-                    // console.log(obj[i].Randomimage);    
-                    // console.log(JSON.parse(obj[i].description).Title);
+                {
 
-                    displayString = displayString + '<div class="post">';
-                    displayString = displayString + '<a href="' + <?php echo '"' . BASE_URL . '"'; ?> + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
-                    displayString = displayString + '<div class="fixOverlayDiv">';
-                    displayString = displayString + '<img class="img-responsive" src="' + obj[i].Randomimage + '">';
-                    displayString = displayString + '<div class="OverlayText">' + obj[i].Photocount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
-                    displayString = displayString + '</div>';
-                    displayString = displayString + '<p class="image-desc">';
-                    displayString = displayString + '<strong>' + JSON.parse(obj[i].description).Title + '</strong>';
-                    displayString = displayString + "</p>";
-                    displayString = displayString + '</a>';
-                    displayString = displayString + '</div>';
+                    displayString += '<div class="post">';
+                    displayString += '<a href="' + <?php echo '"' . BASE_URL . '"'; ?> + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
+                    displayString += '<div class="fixOverlayDiv">';
+                    displayString += '<img class="img-responsive" src="' + obj[i].Randomimage + '">';
+                    displayString += '<div class="OverlayText">' + obj[i].Photocount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
+                    displayString += '</div>';
+                    displayString += '<p class="image-desc">';
+                    displayString += '<strong>' + JSON.parse(obj[i].description).Title + '</strong>';
+                    displayString += "</p>";
+                    displayString += '</a>';
+                    displayString += '</div>';
 
                 }
 
@@ -92,20 +92,19 @@ $(document).ready(function(){
                         $content.fadeIn(500);
                         $grid.masonry('appended', $content);
                         processing = false;
+                        $('#loader-icon').hide();
                     }
                 );
 
                 displayString = "";
 
                 $("#hidden-data").append(obj.hidden);
-
-
             },
             error: function(){console.log("Fail");}             
       });
     }
     $(window).scroll(function(){
-        if ($(window).scrollTop() >= ($(document).height() - $(window).height())* 0.65){
+        if ($(window).scrollTop() >= ($(document).height() - $(window).height())* 0.75){
             if($(".lastpage").length == 0){
                 var pagenum = parseInt($(".pagenum:last").val()) + 1;
                 
@@ -114,6 +113,11 @@ $(document).ready(function(){
                 {
                     getresult(base_url + 'listing/albums/' + archive + '/?page='+pagenum);
                 }
+            }
+            else if($("#no-more-icon").length == 0){
+
+                $('#grid').append('<div id="no-more-icon">No more<br />items<br />to show</div>');
+                //  i$('#no-more-icon').show();
             }
         }
     });
@@ -145,4 +149,7 @@ $(document).ready(function(){
 <div id="hidden-data">
     <?php echo $hiddenData; ?>
 </div>
-<div id="loader-icon"><img src="<?=STOCK_IMAGE_URL?>loading.gif" /><div>
+<div id="loader-icon">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><br />
+    Loading more items
+</div>

@@ -8,7 +8,7 @@ class listingModel extends Model {
 		parent::__construct();
 	}
 
-	public function listAlbums($defaultType, $pagedata) {
+	public function listAlbums($type, $pagedata) {
 		
 		$perPage = 10;
 
@@ -21,7 +21,7 @@ class listingModel extends Model {
 		$dbh = $this->db->connect(DB_NAME);
 		if(is_null($dbh))return null;
 		
-		$sth = $dbh->prepare('SELECT * FROM ' . METADATA_TABLE_L1 . ' WHERE albumID LIKE \''. $defaultType . '%\' ORDER BY albumID' . ' limit ' . $start . ',' . $perPage);
+		$sth = $dbh->prepare('SELECT * FROM ' . METADATA_TABLE_L1 . ' WHERE albumID LIKE \''. $type . '__%\' ORDER BY albumID' . ' limit ' . $start . ',' . $perPage);
 		
 		$sth->execute();
 		$data = array();
@@ -41,7 +41,7 @@ class listingModel extends Model {
 		if(!empty($data)){
 
 			$data["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
-			$data['Archive'] = $defaultType;
+			$data['Archive'] = $type;
 		}
 		else{
 

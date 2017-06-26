@@ -188,24 +188,24 @@ class Model {
 		if($archiveType == 'Photographs')
 		{
 			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*.JPG');
-			$letterSelected = $letters[0];
+			$letterSelected = $letters[rand(0, sizeof($letters) - 1)];
 			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $letterSelected);
 		}
 		else
 		{
-			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*',GLOB_ONLYDIR);
-        
-			$randNum = rand(0, 0);
-			$letterSelected = $letters[$randNum];
+
+			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*', GLOB_ONLYDIR);
+
+			if(!(isset($letters[0]))) return STOCK_IMAGE_URL . 'default-image.png';
+			$letterSelected = $letters[0];
+
 			$pages = glob($letterSelected . '/thumbs/*.JPG');
-			//~ $randNum = rand(0, sizeof($pages) - 1);
-			$randNum = rand(0, 0);
-			$pageSelected = $pages[$randNum];
+
+			if(!(isset($pages[0]))) return STOCK_IMAGE_URL . 'default-image.png';
+			$pageSelected = $pages[0];
 
 			return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
 		}
-
-        return str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pageSelected);
     }
     
     public function getLettersCount($id = '') {

@@ -13,7 +13,7 @@ class listing extends Controller {
 		$this->albums();
 	}
 
-	public function albums($defaultType = DEFAULT_TYPE) {
+	public function albums($type = DEFAULT_TYPE) {
 		
 		$data = $this->model->getGetData();
 		unset($data['url']);
@@ -24,7 +24,7 @@ class listing extends Controller {
 		
 		}
 
-		$result = $this->model->listAlbums($defaultType, $data);
+		$result = $this->model->listAlbums($type, $data);
 		
 		
 		if($data["page"] == 1){
@@ -50,7 +50,7 @@ class listing extends Controller {
 		
 		}
 
-		$result = $this->model->listArchives($album,$data);
+		$result = $this->model->listArchives($album, $data);
 
 		if($data["page"] == 1){
 		
