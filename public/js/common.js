@@ -154,3 +154,51 @@ function buildMasonry(){
         // jQuery('#posts').css({'margin-left': '-20px'});  
     }
 }
+
+function buildMasonryFromJson(json){
+
+    // This requires the following properties in the json file
+    // albumID, randomImagePath, leafCount, field
+
+    var gutter = parseInt(jQuery('.post').css('marginBottom'));
+    var $grid = $('#posts').masonry({
+        gutter: gutter,
+        // specify itemSelector so stamps do get laid out
+        itemSelector: '.post',
+        columnWidth: '.post',
+    });
+
+    var obj = JSON.parse(json);
+    var displayString = "";
+    
+    for(i=0;i<Object.keys(obj).length-1;i++)
+    {
+
+        displayString += '<div class="post">';
+        displayString += '<a href="' + base_url + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
+        displayString += '<div class="fixOverlayDiv">';
+        displayString += '<img class="img-responsive" src="' + obj[i].randomImagePath + '">';
+        displayString += '<div class="OverlayText">' + obj[i].leafCount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
+        displayString += '</div>';
+        displayString += '<p class="image-desc">';
+        displayString += '<strong>' + obj[i].field + '</strong>';
+        displayString += "</p>";
+        displayString += '</a>';
+        displayString += '</div>';
+    }
+
+    var $content = $(displayString);
+    $content.css('display','none');
+
+    $grid.append($content).imagesLoaded().done(
+        function(){
+            $content.fadeIn(500);
+            $grid.masonry('appended', $content);
+            $('#loader-icon').hide();
+
+            $('#grid').attr('data-go', '1');
+        }
+    );
+
+    displayString = "";
+}

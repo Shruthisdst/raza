@@ -40,11 +40,11 @@
 <script>
 $(document).ready(function(){
 
-    var processing = false;
     var archive = "<?=$archive?>";
 
     function getresult(url) {
-        processing = true;
+
+        $('#grid').attr('data-go', '0');
         $.ajax({
             url: url,
             type: "GET",
@@ -55,7 +55,7 @@ $(document).ready(function(){
             },
             success: function(data){
                 
-                processing = true;
+                $('#grid').attr('data-go', '0');
 
                 if(data == "\"noData\"") {
 
@@ -64,55 +64,16 @@ $(document).ready(function(){
                     return;
                 }
 
-                var gutter = parseInt(jQuery('.post').css('marginBottom'));
-                var $grid = $('#posts').masonry({
-                    gutter: gutter,
-                    // specify itemSelector so stamps do get laid out
-                    itemSelector: '.post',
-                    columnWidth: '.post',
-                });
-
-                var obj = JSON.parse(data);
-                var displayString = "";
-                
-                for(i=0;i<Object.keys(obj).length-1;i++)
-                {
-
-                    displayString += '<div class="post">';
-                    displayString += '<a href="' + <?php echo '"' . BASE_URL . '"'; ?> + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
-                    displayString += '<div class="fixOverlayDiv">';
-                    displayString += '<img class="img-responsive" src="' + obj[i].randomImagePath + '">';
-                    displayString += '<div class="OverlayText">' + obj[i].leafCount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
-                    displayString += '</div>';
-                    displayString += '<p class="image-desc">';
-                    displayString += '<strong>' + obj[i].field + '</strong>';
-                    displayString += "</p>";
-                    displayString += '</a>';
-                    displayString += '</div>';
-                }
-
-                var $content = $(displayString);
-                $content.css('display','none');
-
-                $grid.append($content).imagesLoaded(
-                    function(){
-                        $content.fadeIn(500);
-                        $grid.masonry('appended', $content);
-                        $('#loader-icon').hide();
-                        processing = false;
-                    }
-                );
-
-                displayString = "";
+                buildMasonryFromJson(data);
             },
-            error: function(){console.log("Fail");}             
+            error: function(){console.log("Fail");}
       });
     }
     $(window).scroll(function(){
-        
+
         if ($(window).scrollTop() >= ($(document).height() - $(window).height())* 0.75){
 
-            if(!processing) {
+            if($('#grid').attr('data-go') == '1') {
 
                 var pagenum = parseInt($('#grid').attr('data-page')) + 1;
                 $('#grid').attr('data-page', pagenum);
@@ -124,7 +85,7 @@ $(document).ready(function(){
 });     
 </script>
 
-<div id="grid" class="container-fluid" data-page="1">
+<div id="grid" class="container-fluid" data-page="1" data-go="1">
     <div id="posts">
 
 <?php foreach ($data as $row) { ?>
