@@ -185,6 +185,26 @@ class data extends Controller {
 
 		$this->view('data/taskCompleted', $statusMsg, '');
 	}
+
+	// Use this method for global changes in json files
+	// public function modify() {
+
+	// 	$jsonFiles = $this->model->getJsonFiles(rtrim(PHY_PHOTO_URL, "/"), []);
+
+	// 	foreach ($jsonFiles as $jsonFile) {
+
+	// 		if(preg_match('/\/\d{4}\.json/', $jsonFile)) {
+
+	// 			echo $jsonFile . "\n";
+
+	// 			$contents = file_get_contents($jsonFile);
+	// 			$contents = str_replace('"id":"', '"id":"0', $contents);
+	// 			// var_dump($contents);
+
+	// 			file_put_contents($jsonFile, $contents);
+	// 		}
+	// 	}
+	// }
 }
 
 ?>

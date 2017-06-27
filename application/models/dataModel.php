@@ -126,6 +126,28 @@ class dataModel extends Model {
 		$status .= '</ul>';
 		return $status;
 	}
+
+	public function getJsonFiles($dir, $jsonFiles){
+
+	    $files = scandir($dir);
+
+	    foreach($files as $file) {
+
+	        if($file != '.' && $file != '..') {
+
+				if(preg_match('/\.json$/', $file)) {
+
+					array_push($jsonFiles, $dir . '/' . $file);
+				} 
+	            if(is_dir($dir . '/' . $file)) {
+
+	            	$jsonFiles = $this->getJsonFiles($dir . '/' . $file, $jsonFiles);
+	            }
+	        }
+	    }
+
+	    return $jsonFiles;
+	}
 }
 
 ?>
