@@ -54,8 +54,16 @@ $(document).ready(function(){
                 $('#loader-icon').show();
             },
             success: function(data){
+                
                 processing = true;
-                 //console.log(data);
+
+                if(data == "\"noData\"") {
+
+                    $('#grid').append('<div id="no-more-icon">No more<br />items<br />to show</div>');
+                    $('#loader-icon').hide();
+                    return;
+                }
+
                 var gutter = parseInt(jQuery('.post').css('marginBottom'));
                 var $grid = $('#posts').masonry({
                     gutter: gutter,
@@ -67,21 +75,20 @@ $(document).ready(function(){
                 var obj = JSON.parse(data);
                 var displayString = "";
                 
-                for(i=0;i<Object.keys(obj).length-2;i++)
+                for(i=0;i<Object.keys(obj).length-1;i++)
                 {
 
                     displayString += '<div class="post">';
                     displayString += '<a href="' + <?php echo '"' . BASE_URL . '"'; ?> + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
                     displayString += '<div class="fixOverlayDiv">';
-                    displayString += '<img class="img-responsive" src="' + obj[i].Randomimage + '">';
-                    displayString += '<div class="OverlayText">' + obj[i].Photocount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
+                    displayString += '<img class="img-responsive" src="' + obj[i].randomImagePath + '">';
+                    displayString += '<div class="OverlayText">' + obj[i].leafCount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
                     displayString += '</div>';
                     displayString += '<p class="image-desc">';
-                    displayString += '<strong>' + JSON.parse(obj[i].description).Title + '</strong>';
+                    displayString += '<strong>' + obj[i].field + '</strong>';
                     displayString += "</p>";
                     displayString += '</a>';
                     displayString += '</div>';
-
                 }
 
                 var $content = $(displayString);
@@ -91,63 +98,49 @@ $(document).ready(function(){
                     function(){
                         $content.fadeIn(500);
                         $grid.masonry('appended', $content);
-                        processing = false;
                         $('#loader-icon').hide();
+                        processing = false;
                     }
                 );
 
                 displayString = "";
-
-                $("#hidden-data").append(obj.hidden);
             },
             error: function(){console.log("Fail");}             
       });
     }
     $(window).scroll(function(){
+        
         if ($(window).scrollTop() >= ($(document).height() - $(window).height())* 0.75){
-            if($(".lastpage").length == 0){
-                var pagenum = parseInt($(".pagenum:last").val()) + 1;
-                
-                 //~ console.log(base_url+'listing/albums/' + archive + '/?page='+pagenum);
-                if(!processing)
-                {
-                    getresult(base_url + 'listing/albums/' + archive + '/?page='+pagenum);
-                }
-            }
-            else if($("#no-more-icon").length == 0){
 
-                $('#grid').append('<div id="no-more-icon">No more<br />items<br />to show</div>');
-                //  i$('#no-more-icon').show();
+            if(!processing) {
+
+                var pagenum = parseInt($('#grid').attr('data-page')) + 1;
+                $('#grid').attr('data-page', pagenum);
+
+                getresult(base_url + 'listing/albums/' + archive + '/?page='+pagenum);
             }
         }
     });
 });     
 </script>
 
-<?php 
-	$hiddenData = $data["hidden"]; 
-	unset($data["hidden"]);
-?>
-<div id="grid" class="container-fluid">
+<div id="grid" class="container-fluid" data-page="1">
     <div id="posts">
 
 <?php foreach ($data as $row) { ?>
         <div class="post">
             <a href="<?=BASE_URL?>listing/archives/<?=$row->albumID?>" title="View Album">
                 <div class="fixOverlayDiv">
-                    <img class="img-responsive" src="<?=$viewHelper->includeRandomThumbnail($row->albumID)?>">
-                    <div class="OverlayText"><?=$viewHelper->getLettersCount($row->albumID)?><br /><span class="link"><i class="fa fa-link"></i></span></div>
+                    <img class="img-responsive" src="<?=$row->randomImagePath?>">
+                    <div class="OverlayText"><?=$row->leafCount?><br /><span class="link"><i class="fa fa-link"></i></span></div>
                 </div>
                 <p class="image-desc">
-                    <strong><?=$viewHelper->getDetailByField($row->description, 'Title')?></strong>
+                    <strong><?=$row->field?></strong>
                 </p>
             </a>
         </div>
 <?php } ?>
     </div>
-</div>
-<div id="hidden-data">
-    <?php echo $hiddenData; ?>
 </div>
 <div id="loader-icon">
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><br />

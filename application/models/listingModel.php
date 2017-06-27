@@ -28,9 +28,9 @@ class listingModel extends Model {
 		
 		while($result = $sth->fetch(PDO::FETCH_OBJ)) {
 			
-			$result->Randomimage = $this->includeRandomThumbnail($result->albumID);
-			$result->Photocount = $this->getLettersCount($result->albumID);
-			$result->title = $this->getDetailByField($result->description, 'Title');
+			$result->randomImagePath = $this->includeRandomThumbnail($result->albumID);
+			$result->leafCount = $this->getLeafCount($result->albumID);
+			$result->field = $this->getDetailByField($result->description, 'Title');
 
 			array_push($data, $result);
 		}
@@ -40,12 +40,12 @@ class listingModel extends Model {
 		
 		if(!empty($data)){
 
-			$data["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
+			// $data["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
 			$data['Archive'] = $type;
 		}
 		else{
 
-			$data["hidden"] = '<div class="lastpage"></div>';
+			$data = 'noData';
 		}
 		
 		return $data;

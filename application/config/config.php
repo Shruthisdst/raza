@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', 'http://192.168.1.67/raza/');
+define('BASE_URL', 'http://localhost/raza/');
 define('PUBLIC_URL', BASE_URL . 'public/');
 define('XML_SRC_URL', BASE_URL . 'md-src/xml/');
 define('ARCHIVES_URL', PUBLIC_URL . 'Archives/');

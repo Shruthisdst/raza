@@ -208,7 +208,7 @@ class Model {
 		}
     }
     
-    public function getLettersCount($id = '') {
+    public function getLeafCount($id = '') {
 
 			$archiveType = $this->getArchiveType($id);
 			$archivePath = PHY_ARCHIVES_URL . $archiveType . "/";
