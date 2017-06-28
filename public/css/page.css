@@ -705,10 +705,12 @@ button.toggle-button{
   line-height: 18px;
   color: #999;
 }
+.letter_thumbnails{
+}
 img.img-small{
-  height: 250px;
-  display: inline;
-  margin: 0.4em;
+  height: 200px;
+  display: inline-block;
+  margin: 5px;
 }
 #viewletterimages{
   cursor: -webkit-zoom-in;

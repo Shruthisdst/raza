@@ -218,7 +218,12 @@ class viewHelper extends View {
 		{
 			$ids = preg_split('/__/', $id);
 			 echo '<div id="viewletterimages" class="image-full-size">';
-             echo '<img class="img-responsive" src="' . PHOTO_URL . $ids[1] . '/' . $ids[2] . '.JPG">';
+
+			 if(file_exists(PHY_PHOTO_URL . $ids[1] . '/' . $ids[2] . '.JPG'))
+	             echo '<img class="img-responsive" src="' . PHOTO_URL . $ids[1] . '/' . $ids[2] . '.JPG">';
+	         else
+	             echo '<img class="img-responsive" src="' . STOCK_IMAGE_URL . 'default-image.png">';
+
              echo '</div>';
 		}
 		else
@@ -226,7 +231,6 @@ class viewHelper extends View {
 			$imgPath = $this->getPath($id);
 			$filesPath = $imgPath . '/thumbs/*' . PHOTO_FILE_EXT;
 			$files = glob($filesPath);
-		
 
 			echo '<div id="viewletterimages" class="letter_thumbnails">';
 			foreach ($files as $file) {
