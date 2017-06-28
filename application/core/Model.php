@@ -210,13 +210,19 @@ class Model {
 
         $archiveType = $this->getArchiveType($id);
 		$imgPath = $this->getPath($id);
-		$pages = glob($imgPath .  '/thumbs/*.JPG');
 
-		// For photographs, get random image from that album		
-		$range = ($archiveType == 'Photographs') ? sizeof($pages) - 1 : 0;
-		$randNum = rand(0, $range);
+		if(preg_match('/^' . PHOTOGRAPHS . '__/', $id)) {
 
-		return (isset($pages[$randNum])) ? str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pages[$randNum]) : STOCK_IMAGE_URL . 'default-image.png';
+			$thumbnailPath = preg_replace("/(.*)\/(.*)/", "$1/thumbs/$2.JPG", $imgPath);
+		}
+		else{
+
+			$pages = glob($imgPath .  '/thumbs/*.JPG');
+			$thumbnailPath = $pages[0];
+		}
+
+		return (file_exists($thumbnailPath)) ? str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $thumbnailPath) : STOCK_IMAGE_URL . 'default-image.png';
+		// return (isset($pages[$randNum])) ? str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pages[$randNum]) : STOCK_IMAGE_URL . 'default-image.png';
     }
 
     public function getRandomArtefact($albumID = '') {
