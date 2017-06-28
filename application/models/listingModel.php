@@ -41,7 +41,6 @@ class listingModel extends Model {
 		
 		if(!empty($data)){
 
-			// $data["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
 			$data['Archive'] = $type;
 		}
 		else{
