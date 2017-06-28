@@ -1,3 +1,14 @@
+<?php $archiveType = $viewHelper->getArchiveType($data->albumID); ?>
+<script>
+$(document).ready(function(){
+
+    var bgColor = $('.albumTitle.' + '<?=$archiveType?>').css('background-color');
+    var fgColor = $('.albumTitle span').css('color');
+
+    $('.albumTitle span').css('color', bgColor);
+    $('.albumTitle.' + '<?=$archiveType?>').css('background-color', fgColor);
+});
+</script>
 <div class="container">
     <div class="row gap-above-med">
         <div class="col-md-9">
@@ -14,6 +25,7 @@
         </div>            
         <div class="col-md-3">
             <div class="image-desc-full">
+                <div class="albumTitle <?=$archiveType?>"><span><?=$archiveType?></span></div>
                 <ul class="list-unstyled">
                     <?=$viewHelper->displayFieldData($data->description)?>
                     <?php if(isset($_SESSION['login'])) {?>

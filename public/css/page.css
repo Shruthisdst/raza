@@ -731,3 +731,38 @@ img.img-small{
 #contact h2{
 	color: #898989;
 }
+.albumTitle{
+  padding: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #DDD;
+}
+.albumTitle span{
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+}
+.albumTitle.Letters{
+  background-color: #3F51B5;
+}
+.albumTitle.Articles{
+  background-color: #00AA8D;
+}
+.albumTitle.Books{
+  background-color: #E25637;
+}
+.albumTitle.Photographs{
+  background-color: #0091EA;
+}
+.albumTitle.Brochures{
+  background-color: #F57C00;
+}
+.albumTitle.Miscellaneous{
+  background-color: #9B26AF;
+}
+.albumTitle.Unsorted{
+  background-color: #9E9E9E;
+}

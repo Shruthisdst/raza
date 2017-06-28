@@ -1,10 +1,13 @@
 <?php
 	$albumDetails = $data['albumDetails']; unset($data['albumDetails']);
 	$albumID = $data[0]->albumID;
+    $archiveType = $viewHelper->getArchiveType($albumID);
 ?>
 
 <script>
 $(document).ready(function(){
+
+    $('.post.no-border').prepend('<div class="albumTitle <?=$archiveType?>"><span><?=$archiveType?></span></div>');
 
     $(window).scroll(function(){
 

@@ -1,10 +1,13 @@
 <?php
 	$archive = $data['Archive'];
 	unset($data['Archive']);
+    $archiveType = $viewHelper->getArchiveType($data[0]->albumID);
 ?>
 
 <script>
 $(document).ready(function(){
+
+    $('#posts').prepend('<div class="post no-border"><div class="albumTitle <?=$archiveType?>"><span><?=$archiveType?></span></div></div>');
 
     $(window).scroll(function(){
 
@@ -24,7 +27,6 @@ $(document).ready(function(){
 
 <div id="grid" class="container-fluid" data-page="1" data-go="1">
     <div id="posts">
-
 <?php foreach ($data as $row) { ?>
         <div class="post">
             <a href="<?=BASE_URL?>listing/archives/<?=$row->albumID?>" title="View Album">
