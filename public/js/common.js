@@ -199,20 +199,33 @@ function buildMasonryFromJson(json){
     var obj = JSON.parse(json);
     var displayString = "";
     
-    for(i=0;i<Object.keys(obj).length-1;i++)
-    {
+    for(i=0;i<Object.keys(obj).length-1;i++) {
 
-        displayString += '<div class="post">';
-        displayString += '<a href="' + base_url + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
-        displayString += '<div class="fixOverlayDiv">';
-        displayString += '<img class="img-responsive" src="' + obj[i].randomImagePath + '">';
-        displayString += '<div class="OverlayText">' + obj[i].leafCount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
-        displayString += '</div>';
-        displayString += '<p class="image-desc">';
-        displayString += '<strong>' + obj[i].field + '</strong>';
-        displayString += "</p>";
-        displayString += '</a>';
-        displayString += '</div>';
+        if (obj[i].id === undefined) {
+            
+            // This snippet id for listing of albums
+
+            displayString += '<div class="post">';
+            displayString += '<a href="' + base_url + 'listing/archives/' + obj[i].albumID + '" title="View Album">';
+            displayString += '<div class="fixOverlayDiv">';
+            displayString += '<img class="img-responsive" src="' + obj[i].randomImagePath + '">';
+            displayString += '<div class="OverlayText">' + obj[i].leafCount + '<br /><span class="link"><i class="fa fa-link"></i></span></div>';
+            displayString += '</div>';
+            if(obj[i].field) displayString += '<p class="image-desc"><strong>' + obj[i].field + '</strong></p>';
+            displayString += '</a>';
+            displayString += '</div>';
+        }
+        else{
+
+            // This snippet is for listing of archives
+
+            displayString = displayString + '<div class="post">';    
+            displayString = displayString + '<a href="' + base_url + 'describe/archive/' + obj[i].albumID + '/' + obj[i].id + '" title="View Details">';
+            displayString = displayString + '<img class="img-responsive" src="' +  obj[i].randomImagePath + '">';
+            if(obj[i].field) displayString = displayString + '<p class="image-desc"><strong>' + obj[i].field + '</strong></p>';
+            displayString = displayString + '</a>';
+            displayString = displayString + '</div>';
+        }
     }
 
     var $content = $(displayString);

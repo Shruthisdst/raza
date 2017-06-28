@@ -66,9 +66,7 @@ $(document).ready(function(){
                     <img class="img-responsive" src="<?=$row->randomImagePath?>">
                     <div class="OverlayText"><?=$row->leafCount?><br /><span class="link"><i class="fa fa-link"></i></span></div>
                 </div>
-                <p class="image-desc">
-                    <strong><?=$row->field?></strong>
-                </p>
+                <?php if($row->field) { ?><p class="image-desc"><strong><?=$row->field?></strong></p><?php } ?>
             </a>
         </div>
 <?php } ?>

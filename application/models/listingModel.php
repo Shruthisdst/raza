@@ -74,24 +74,21 @@ class listingModel extends Model {
 		
 		while($result = $sth->fetch(PDO::FETCH_OBJ)) {
 
-			$result->image = $this->includeRandomThumbnailFromArchive($result->id);
-			$result->title = $this->getDetailByField($result->description, 'title');
+			$result->randomImagePath = $this->includeRandomThumbnailFromArchive($result->id);
+			$result->field = $this->getDetailByField($result->description, 'title');
 			array_push($data, $result);
 		}
 
 		$dbh = null;
 		
-		if(!empty($data)){
+		if(!empty($data)) {
 			
-			$data["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
+			$data['albumDetails'] = $this->getAlbumDetails($albumID);
 		}
-		else{
+		else {
 
-			$data["hidden"] = '<div class="lastpage"></div>';
+			$data = 'noData';
 		}
-		
-		$data['albumDetails'] = $this->getAlbumDetails($albumID);
-		
 		
 		return $data;
 	}

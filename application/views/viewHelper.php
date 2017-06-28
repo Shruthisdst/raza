@@ -291,6 +291,12 @@ class viewHelper extends View {
         echo '<input type="submit" id="submit" value="Update Data" />' . "\n";
     }
 
+    public function includeEditButton($albumID) {
+
+        if(isset($_SESSION['login']))
+        	echo '<ul class="list-unstyled"><li><a href="' . BASE_URL . 'edit/archives/' . $albumID . '" class="btn btn-primary" role="button">Contribute</a></li></ul>';
+    }
+
 }
 
 ?>
