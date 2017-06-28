@@ -222,18 +222,21 @@ class Model {
 		}
 
 		return (file_exists($thumbnailPath)) ? str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $thumbnailPath) : STOCK_IMAGE_URL . 'default-image.png';
-		// return (isset($pages[$randNum])) ? str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $pages[$randNum]) : STOCK_IMAGE_URL . 'default-image.png';
     }
 
     public function getRandomArtefact($albumID = '') {
 		
+
 		$archiveType = $this->getArchiveType($albumID);
 
 		$path = PHY_ARCHIVES_URL . $archiveType . '/' . $this->getAlbumID($albumID) . '/';
-		$artefacts = glob($path . '*', GLOB_ONLYDIR);
+
+		$artefacts = (preg_match('/^' . PHOTOGRAPHS . '__/', $albumID)) ? glob($path . '*.JPG') : glob($path . '*', GLOB_ONLYDIR);
+
 		$randNum = rand(0, sizeof($artefacts) - 1);
 
-		return (isset($artefacts[$randNum])) ? $albumID . '__' . str_replace($path, '', $artefacts[$randNum]) : $albumID . '__' . DEFAULT_ARTEFACT;
+		$randomArtefact = (isset($artefacts[$randNum])) ? $albumID . '__' . str_replace($path, '', $artefacts[$randNum]) : $albumID . '__' . DEFAULT_ARTEFACT;
+		return str_replace('.JPG', '', $randomArtefact);
     }
 }
 
