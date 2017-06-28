@@ -155,6 +155,34 @@ function buildMasonry(){
     }
 }
 
+function getresult(url) {
+
+    $('#grid').attr('data-go', '0');
+    $.ajax({
+        url: url,
+        type: "GET",
+        
+        beforeSend: function(){
+
+            $('#loader-icon').show();
+        },
+        success: function(data){
+            
+            $('#grid').attr('data-go', '0');
+
+            if(data == "\"noData\"") {
+
+                $('#grid').append('<div id="no-more-icon">No more<br />items<br />to show</div>');
+                $('#loader-icon').hide();
+                return;
+            }
+
+            buildMasonryFromJson(data);
+        },
+        error: function(){console.log("Fail");}
+  });
+}
+
 function buildMasonryFromJson(json){
 
     // This requires the following properties in the json file

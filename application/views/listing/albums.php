@@ -40,35 +40,6 @@
 <script>
 $(document).ready(function(){
 
-    var archive = "<?=$archive?>";
-
-    function getresult(url) {
-
-        $('#grid').attr('data-go', '0');
-        $.ajax({
-            url: url,
-            type: "GET",
-            
-            beforeSend: function(){
-
-                $('#loader-icon').show();
-            },
-            success: function(data){
-                
-                $('#grid').attr('data-go', '0');
-
-                if(data == "\"noData\"") {
-
-                    $('#grid').append('<div id="no-more-icon">No more<br />items<br />to show</div>');
-                    $('#loader-icon').hide();
-                    return;
-                }
-
-                buildMasonryFromJson(data);
-            },
-            error: function(){console.log("Fail");}
-      });
-    }
     $(window).scroll(function(){
 
         if ($(window).scrollTop() >= ($(document).height() - $(window).height())* 0.75){
@@ -78,7 +49,7 @@ $(document).ready(function(){
                 var pagenum = parseInt($('#grid').attr('data-page')) + 1;
                 $('#grid').attr('data-page', pagenum);
 
-                getresult(base_url + 'listing/albums/' + archive + '/?page='+pagenum);
+                getresult(base_url + 'listing/albums/' + '<?=$archive?>' + '/?page='+pagenum);
             }
         }
     });

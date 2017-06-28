@@ -31,6 +31,7 @@ class listingModel extends Model {
 			$result->randomImagePath = $this->includeRandomThumbnail($result->albumID);
 			$result->leafCount = $this->getLeafCount($result->albumID);
 			$result->field = $this->getDetailByField($result->description, 'Title');
+			$result->description = json_decode($result->description);
 
 			array_push($data, $result);
 		}
