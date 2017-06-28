@@ -28,7 +28,7 @@ class listingModel extends Model {
 		
 		while($result = $sth->fetch(PDO::FETCH_OBJ)) {
 			
-			$result->randomImagePath = $this->includeRandomThumbnail($result->albumID);
+			$result->randomImagePath = $this->getArtefactThumbnail($this->getRandomArtefact($result->albumID));
 			$result->leafCount = $this->getLeafCount($result->albumID);
 			$result->field = $this->getDetailByField($result->description, 'Title');
 			$result->description = json_decode($result->description);
@@ -74,7 +74,7 @@ class listingModel extends Model {
 		
 		while($result = $sth->fetch(PDO::FETCH_OBJ)) {
 
-			$result->randomImagePath = $this->includeRandomThumbnailFromArchive($result->id);
+			$result->randomImagePath = $this->getArtefactThumbnail($result->id);
 			$result->field = $this->getDetailByField($result->description, 'title');
 			array_push($data, $result);
 		}
