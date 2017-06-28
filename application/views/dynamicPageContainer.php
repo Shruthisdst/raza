@@ -11,7 +11,7 @@
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/<?=PHOTOGRAPHS?>">Photographs</a></li>
                 <li><a>·</a></li>
-                <li><a href="<?=BASE_URL?>listing/archives/<?=BROCHURES?>__001">Brochures</a></li>
+                <li><a href="<?=BASE_URL?>listing/albums/<?=BROCHURES?>">Brochures</a></li>
                 <li><a>·</a></li>
                 <li><a href="<?=BASE_URL?>listing/albums/<?=MISCELLANEOUS?>">Miscellaneous</a></li>
                 <li><a>·</a></li>

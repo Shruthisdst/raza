@@ -15,6 +15,8 @@ class listing extends Controller {
 
 	public function albums($type = DEFAULT_TYPE) {
 		
+		if($type == BROCHURES) $this->redirect('listing/archives/' . BROCHURES . '__' . DEFAULT_ALBUM);
+
 		$data = $this->model->getGetData();
 		unset($data['url']);
 		
