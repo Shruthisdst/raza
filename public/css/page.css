@@ -774,3 +774,7 @@ img.img-small{
   background-color: #FFF9C4;
   display: inline !important;
 }
+.image-desc-full li a.editDetails{
+  color: #3F51B5;
+  font-weight: bold;
+}

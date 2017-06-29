@@ -29,9 +29,7 @@ $(document).ready(function(){
                 <ul class="list-unstyled">
                     <?=$viewHelper->displayFieldData($data->description)?>
                     <?php if(isset($_SESSION['login'])) {?>
-                    <li>
-                            <a href="<?=BASE_URL?>edit/archive/<?=$data->albumID?>/<?=$data->id?>" class="btn btn-primary" role="button">Contribute</a>
-                    </li>                
+                    <li><a class="editDetails" href="<?=BASE_URL?>edit/archive/<?=$data->albumID?>/<?=$data->id?>">Edit Details</a></li>
                     <?php } ?>
                 </ul>
             </div>

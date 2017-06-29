@@ -313,7 +313,7 @@ class viewHelper extends View {
     public function includeEditButton($albumID) {
 
         if(isset($_SESSION['login']))
-        	echo '<ul class="list-unstyled"><li><a href="' . BASE_URL . 'edit/archives/' . $albumID . '" class="btn btn-primary" role="button">Contribute</a></li></ul>';
+        	echo '<ul class="list-unstyled"><li><a class="editDetails" href="' . BASE_URL . 'edit/archives/' . $albumID . '">Edit Details</a></li></ul>';
     }
 }
 
