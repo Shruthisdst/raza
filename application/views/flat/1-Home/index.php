@@ -57,6 +57,12 @@
                     </a>
                 </li>
                 <li class="stat-elem">
+                    <a href="<?=BASE_URL?>listing/albums/<?=ARTWORKS?>">
+                        <h2><i class="fa fa-paint-brush"></i></h2>
+                        <p>Artworks</p>
+                    </a>
+                </li>
+                <li class="stat-elem">
                     <a href="<?=BASE_URL?>listing/albums/<?=BROCHURES?>">
                         <h2><i class="fa fa-files-o"></i></h2>
                         <p>Brochures</p>
@@ -72,12 +78,6 @@
                     <a href="<?=BASE_URL?>listing/albums/<?=UNSORTED?>">
                         <h2><i class="fa fa-sort"></i></h2>
                         <p>Unsorted</p>
-                    </a>
-                </li>
-                <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/albums/<?=ARTWORKS?>">
-                        <h2><i class="fa fa-sort"></i></h2>
-                        <p>Artworks</p>
                     </a>
                 </li>
             </ul>
