@@ -74,6 +74,12 @@
                         <p>Unsorted</p>
                     </a>
                 </li>
+                <li class="stat-elem">
+                    <a href="<?=BASE_URL?>listing/albums/<?=ARTWORKS?>">
+                        <h2><i class="fa fa-sort"></i></h2>
+                        <p>Artworks</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php
 
 class Model {
-	public $archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
+	public $archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted", "08"=>"Artworks");
 	public function __construct() {
 
 		$this->db = new Database();
@@ -106,7 +106,7 @@ class Model {
 
 	public function getNeighbourhood($id) {
 		$ids = preg_split('/__/', $id);
-		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted", "08"=>"Artworks");
         $atype = $archives[$ids[0]];
 		$albumID = $ids[1];
 		$albumPath = PHY_ARCHIVES_URL . $atype . '/' . $albumID;
@@ -136,7 +136,7 @@ class Model {
 	public function getArchiveType($combinedID) {
 
 		$ids = preg_split('/__/', $combinedID);
-		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted", "08"=>"Artworks");
 		return $archives[$ids[0]];
     }
 
@@ -193,6 +193,10 @@ class Model {
 			{
 				return ($count > 1) ? $count . ' Photos' : $count . ' Photo';
 			}
+			elseif($archiveType == "Artworks")
+			{
+				return ($count > 1) ? $count . ' Works' : $count . ' Work';
+			}
 			else
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
@@ -211,7 +215,7 @@ class Model {
         $archiveType = $this->getArchiveType($id);
 		$imgPath = $this->getPath($id);
 
-		if(preg_match('/^' . PHOTOGRAPHS . '__/', $id)) {
+		if((preg_match('/^' . PHOTOGRAPHS . '__/', $id)) || (preg_match('/^' . ARTWORKS . '__/', $id))) {
 
 			$thumbnailPath = preg_replace("/(.*)\/(.*)/", "$1/thumbs/$2.JPG", $imgPath);
 		}
@@ -231,7 +235,7 @@ class Model {
 
 		$path = PHY_ARCHIVES_URL . $archiveType . '/' . $this->getAlbumID($albumID) . '/';
 
-		$artefacts = (preg_match('/^' . PHOTOGRAPHS . '__/', $albumID)) ? glob($path . '*.JPG') : glob($path . '*', GLOB_ONLYDIR);
+		$artefacts = ((preg_match('/^' . PHOTOGRAPHS . '__/', $albumID)) || (preg_match('/^' . ARTWORKS . '__/', $albumID))) ? glob($path . '*.JPG') : glob($path . '*', GLOB_ONLYDIR);
 
 		$randNum = rand(0, sizeof($artefacts) - 1);
 

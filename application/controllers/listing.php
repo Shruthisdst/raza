@@ -17,6 +17,7 @@ class listing extends Controller {
 		
 		// Redirect to archives page as brochures contain just a pseudo container
 		if($type == BROCHURES) $this->redirect('listing/archives/' . BROCHURES . '__' . DEFAULT_ALBUM);
+		if($type == ARTWORKS) $this->redirect('listing/archives/' . ARTWORKS . '__' . DEFAULT_ALBUM);
 
 		$data = $this->model->getGetData();
 		unset($data['url']);

@@ -49,6 +49,10 @@ class viewHelper extends View {
 			{
 				return ($count > 1) ? $count . ' Photos' : $count . ' Photo';
 			}
+			elseif($archiveType == "Artworks")
+			{
+				return ($count > 1) ? $count . ' Works' : $count . ' Work';
+			}
 			else
 			{
 				return ($count > 1) ? $count . ' Items' : $count . ' Item';
@@ -68,7 +72,7 @@ class viewHelper extends View {
     public function getArchiveType($combinedID) {
 
 		$ids = preg_split('/__/', $combinedID);
-		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted");
+		$archives = array("01"=>"Letters", "02"=>"Articles", "03"=>"Books", "04"=>"Photographs", "05"=>"Brochures", "06"=>"Miscellaneous", "07"=>"Unsorted", "08"=>"Artworks");
 		return $archives[$ids[0]];
     }
     
@@ -102,6 +106,10 @@ class viewHelper extends View {
 		{
 			$ArchivePath = PHOTOGRAPHS_URL;
 		}
+		elseif($aPath == "Artworks")
+		{
+			$ArchivePath = ARTWORKS_URL;
+		}
 		return $ArchivePath;
     }
 
@@ -116,7 +124,7 @@ class viewHelper extends View {
 		
 		$archiveType = $this->getArchiveType($id);
 		$id = $this->getAlbumID($id);
-		if($archiveType == 'Photographs')
+		if(($archiveType == 'Photographs') || ($archiveType == 'Artworks'))
 		{
 			$letters = glob(PHY_ARCHIVES_URL . $archiveType . '/' . $id . '/*.JPG');
 			$letterSelected = $letters[0];
@@ -140,7 +148,7 @@ class viewHelper extends View {
     public function includeRandomThumbnailFromArchive($id = '') {
 		
 		$archiveType = $this->getArchiveType($id);
-		if($archiveType == 'Photographs')
+		if(($archiveType == 'Photographs') || ($archiveType == 'Artworks'))
 		{
 			$ids = preg_split('/__/', $id);
 			$ActualPath = PHY_ARCHIVES_URL . $archiveType . '/' . $ids[1] . '/thumbs/' . $ids[2] . '.JPG';
@@ -214,13 +222,15 @@ class viewHelper extends View {
     public function displayThumbs($id){
 		
 		$archiveType = $this->getArchiveType($id);
-		if($archiveType == 'Photographs')
+		if(($archiveType == 'Photographs') || ($archiveType == 'Artworks'))
 		{
+			$archivePath = ($archiveType == 'Photographs') ? 'PHOTO_URL' : 'ARTWORKS_URL';
+
 			$ids = preg_split('/__/', $id);
 			 echo '<div id="viewletterimages" class="image-full-size">';
 
-			 if(file_exists(PHY_PHOTO_URL . $ids[1] . '/' . $ids[2] . '.JPG'))
-	             echo '<img class="img-responsive" src="' . PHOTO_URL . $ids[1] . '/' . $ids[2] . '.JPG">';
+			 if(file_exists(constant('PHY_' . $archivePath) . $ids[1] . '/' . $ids[2] . '.JPG'))
+	             echo '<img class="img-responsive" src="' . constant($archivePath) . $ids[1] . '/' . $ids[2] . '.JPG">';
 	         else
 	             echo '<img class="img-responsive" src="' . STOCK_IMAGE_URL . 'default-image.png">';
 

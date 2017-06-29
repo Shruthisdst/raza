@@ -17,6 +17,7 @@ define('PHOTOGRAPHS', '04');
 define('BROCHURES', '05');
 define('MISCELLANEOUS', '06');
 define('UNSORTED', '07');
+define('ARTWORKS', '08');
 
 // db table names
 define('METADATA_TABLE_L1', 'album');

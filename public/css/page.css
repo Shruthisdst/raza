@@ -766,6 +766,9 @@ img.img-small{
 .albumTitle.Unsorted{
   background-color: #9E9E9E;
 }
+.albumTitle.Artworks{
+  background-color: #5D4037;
+}
 .albumTitle.Search{
   background-color: #00BCD4;
 }
