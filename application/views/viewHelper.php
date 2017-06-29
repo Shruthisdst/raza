@@ -300,7 +300,6 @@ class viewHelper extends View {
         if(isset($_SESSION['login']))
         	echo '<ul class="list-unstyled"><li><a href="' . BASE_URL . 'edit/archives/' . $albumID . '" class="btn btn-primary" role="button">Contribute</a></li></ul>';
     }
-
 }
 
 ?>

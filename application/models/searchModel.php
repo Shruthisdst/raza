@@ -71,7 +71,7 @@ class searchModel extends Model {
 		while($result = $sth->fetch(PDO::FETCH_OBJ)) {
 
 			$result->randomImagePath = $this->getArtefactThumbnail($result->id);
-			$result->field = $this->getDetailByField($result->description, 'From');
+			$result->field = $this->getMatchingField($result->description, $description);
 
 			array_push($data, $result);
 		}
@@ -88,6 +88,30 @@ class searchModel extends Model {
 
 		return $data;
 	}
-}
 
+	public function getMatchingField($description, $searchTerm){
+
+		$searchTerm = $searchTerm;
+		$terms = explode(' ', $searchTerm);
+		$termsRegex = implode('|', $terms);
+		$descArray = json_decode($description, true);
+
+		$matches = [];
+		if(isset($descArray['Type'])) array_push($matches, '<strong>Type</strong> : ' . $descArray['Type']);
+
+		foreach ($terms as $term) {
+			
+			foreach ($descArray as $key => $value) {
+			
+				if(preg_match('/' . $term . '/i', $value)){
+
+					$value = preg_replace("/($termsRegex)/i", "<span class=\"highlight\">$1</span>", $value);
+					array_push($matches, '<strong>' . $key . '</strong> : ' . $value);
+					unset($descArray{$key});
+				}
+			}			
+		}
+		return implode($matches, '<br />');
+	}
+}
 ?>

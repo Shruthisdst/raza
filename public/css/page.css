@@ -769,3 +769,7 @@ img.img-small{
 .albumTitle.Search{
   background-color: #00BCD4;
 }
+.highlight{
+  background-color: #FFF9C4;
+  display: inline !important;
+}

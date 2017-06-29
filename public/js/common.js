@@ -222,7 +222,7 @@ function buildMasonryFromJson(json){
             displayString = displayString + '<div class="post">';    
             displayString = displayString + '<a href="' + base_url + 'describe/archive/' + obj[i].albumID + '/' + obj[i].id + '" title="View Details">';
             displayString = displayString + '<img class="img-responsive" src="' +  obj[i].randomImagePath + '">';
-            if(obj[i].field) displayString = displayString + '<p class="image-desc"><strong>' + obj[i].field + '</strong></p>';
+            if(obj[i].field) displayString = displayString + '<p class="image-desc">' + obj[i].field + '</p>';
             displayString = displayString + '</a>';
             displayString = displayString + '</div>';
         }

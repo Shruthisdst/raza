@@ -28,7 +28,7 @@ $(document).ready(function(){
         <div class="post">
             <a href="<?=BASE_URL?>describe/archive/<?=$row->albumID . '/' . $row->id?>" title="View Details">
                 <img src="<?=$row->randomImagePath?>">
-                <?php if($row->field) { ?><p class="image-desc"><strong><?=$row->field?></strong></p><?php } ?>
+                <?php if($row->field) { ?><p class="image-desc"><?=$row->field?></p><?php } ?>
             </a>
         </div>
 <?php } ?>
