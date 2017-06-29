@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/collections/<?=BOOKS?>">
+                    <a href="<?=BASE_URL?>listing/albums/<?=BOOKS?>">
                         <h2><i class="fa fa-book"></i></h2>
                         <p>Books</p>
                     </a>
@@ -57,19 +57,11 @@
                     </a>
                 </li>
                 <li class="stat-elem">
-                    <a href="<?=BASE_URL?>listing/archives/<?=BROCHURES?>__001">
+                    <a href="<?=BASE_URL?>listing/albums/<?=BROCHURES?>">
                         <h2><i class="fa fa-files-o"></i></h2>
                         <p>Brochures</p>
                     </a>
                 </li>
-<!--
-                <li class="stat-elem">
-                    <a href="#">
-                        <h2><i class="fa fa-volume-up"></i></h2>
-                        <p>Multimedia</p>
-                    </a>
-                </li>
--->
                 <li class="stat-elem">
                     <a href="<?=BASE_URL?>listing/albums/<?=MISCELLANEOUS?>">
                         <h2><i class="fa fa-th"></i></h2>
