@@ -24,40 +24,18 @@ class search extends Controller {
 			
 				$data["page"] = 1;
 			}
-	
-			$perPage = 10;
 
-			$page = $data["page"];
+			$result = $this->model->getSearchResults($data);
 
-			unset($data['page']);
-
-			$data = $this->model->preProcessPOST($data);
-
-			$limit = ' LIMIT ' . ($page - 1) * $perPage . ', ' . $perPage;
-
-			$query = $this->model->formGeneralQuery($data, METADATA_TABLE_L2,'',$limit);
-
-			// var_dump($query);
-			$result = $this->model->executeQuery($query);
-			if(!empty($result)){
-
-				$result["hidden"] = '<input type="hidden" class="pagenum" value="' . $page . '" />';
-				// var_dump($result);
+			if($data["page"] == 1){
+			
+				($result) ? $this->view('search/result', $result) : $this->view('error/noResults', 'search/index/');
 			}
 			else{
-
-				$result["hidden"] = '<div class="lastpage"></div>';
-			}
-
-			$result['sterm'] = $data["description"];
-
-			if($page == 1){
-
-				($result)? $this->view('search/result', $result) : $this->view('error/noResults', 'search/index/');
-			}
-			else{
+			
 				echo json_encode($result);
 			}
+	
 		}
 		else {
 

@@ -1,95 +1,40 @@
-<?php $description = $data["sterm"]; unset($data["sterm"]); ?>
+<?php $description = $data["description"]; unset($data["description"]); ?>
 
 <script>
 $(document).ready(function(){
 
-    var processing = false;
-    var description = <?php echo  '"' . $description . '"';  ?>;
-    function getresult(url) {
-        processing = true;
-        $.ajax({
-            url: url,
-            type: "GET",
-            complete: function(){
-                $('#loader-icon').hide();
-            },
-            success: function(data){
-                processing = true;
-                // console.log(data);
-                var gutter = parseInt(jQuery('.post').css('marginBottom'));
-                var $grid = $('#posts').masonry({
-                    gutter: gutter,
-                    itemSelector: '.post',
-                    columnWidth: '.post'
-                });
-                var obj = JSON.parse(data);
-                var displayString = "";
-                for(i=0;i<Object.keys(obj).length-2;i++)
-                {                    
-                    displayString = displayString + '<div class="post">';    
-                    displayString = displayString + '<a href="' + <?php echo '"' . BASE_URL . '"'; ?> + 'describe/archive/' + obj[i].albumID + '/' + obj[i].id + '" title="View Details">';
-                    displayString = displayString + '<img class="img-responsive" src="' +  obj[i].image + '">';
-                    if(JSON.parse(obj[i].description).title)
-                    {
-						displayString = displayString + '<p class="image-desc">';
-						displayString = displayString + '<strong>' + JSON.parse(obj[i].description).title + '</strong>';
-						displayString = displayString + "</p>";
-					}
-                    displayString = displayString + '</div>';
-                    displayString = displayString + '</a>';
-                    displayString = displayString + '</div>';
-                }
+    $('.post.no-border').prepend('<div class="albumTitle Search"><span><i class="fa fa-search"></i> ' + '<?=$description?>' + '</span></div>');
 
-                var $content = $(displayString);
-                $content.css('display','none');
-                $grid.append($content).imagesLoaded(
-                    function(){
-                        $content.fadeIn(500);
-                        $grid.masonry('appended', $content);
-                        processing = false;
-                    }
-                );
-
-               displayString = "";
-               $("#hidden-data").append(obj.hidden);
-            },
-            error: function(){console.log("Fail");}             
-      });
-    }
     $(window).scroll(function(){
-        if ($(window).scrollTop() >= ($(document).height() - $(window).height()) * 0.65){
-            if($(".lastpage").length == 0){
-                var pagenum = parseInt($(".pagenum:last").val()) + 1;
-                if(!processing)
-                {
-                    getresult(base_url+'search/field/?page='+pagenum+'&description='+description);
-                }
+
+        if ($(window).scrollTop() >= ($(document).height() - $(window).height())* 0.75){
+
+            if($('#grid').attr('data-go') == '1') {
+
+                var pagenum = parseInt($('#grid').attr('data-page')) + 1;
+                $('#grid').attr('data-page', pagenum);
+
+                getresult(base_url + 'search/field/?page=' + pagenum + '&description=' + '<?=$description?>');
             }
         }
     });
-});
+});     
 </script>
-<?php 
-	$hiddenData = $data["hidden"]; 
-	unset($data["hidden"]);
-?>
-<div id="grid" class="container-fluid">
-    <div id="posts">       
+
+<div id="grid" class="container-fluid" data-page="1" data-go="1">
+    <div id="posts">
+        <div class="post no-border"></div>
 <?php foreach ($data as $row) { ?>
         <div class="post">
-            <?php $actualID = $viewHelper->getAlbumID($row->id); ?>
             <a href="<?=BASE_URL?>describe/archive/<?=$row->albumID . '/' . $row->id?>" title="View Details">
-                <img src="<?=$viewHelper->includeRandomThumbnailFromArchive($row->id)?>">
-                <?php
-                    $caption = $viewHelper->getDetailByField($row->description, 'Caption');
-                    if ($caption) echo '<p class="image-desc"><strong>' . $caption . '</strong></p>';
-                ?>
+                <img src="<?=$row->randomImagePath?>">
+                <?php if($row->field) { ?><p class="image-desc"><strong><?=$row->field?></strong></p><?php } ?>
             </a>
         </div>
 <?php } ?>
     </div>
 </div>
-<div id="hidden-data">
-    <?php echo $hiddenData; ?>
+<div id="loader-icon">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><br />
+    Loading more items
 </div>
-<div id="loader-icon"><img src="<?=STOCK_IMAGE_URL?>loading.gif" /><div>

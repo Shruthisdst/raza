@@ -7,57 +7,6 @@ class searchModel extends Model {
 		parent::__construct();
 	}
 
-	public function formQuery($data, $orderBy = '') {
-
-		$textArray = array();
-		$textQuery = '';
-	
-		$filter = '';
-		$words = array();
-
-		if(isset($data['fulltext'])) {
-
-			$filter = 'id IN (SELECT id FROM fulltextsearch WHERE MATCH (text) AGAINST (? IN BOOLEAN MODE))';
-			array_push($words, $data['fulltext']);
-			unset($data['fulltext']);
-		}
-
-		$data = $this->regexFilter($data);
-
-		if($filter != '') array_unshift($data['filter'], $filter);
-		$data['words'] = array_merge($words, $data['words']);
-
-
-		$sqlFilter = (count($data['filter'] > 1)) ? implode(' and ', $data['filter']) : array_values($data['filter']);
-		$sqlStatement = 'SELECT * FROM ' . METADATA_TABLE . ' WHERE ' . $textQuery . $sqlFilter . $orderBy;
-
-		$data['query'] = $sqlStatement;
-		$data['words'] = array_merge($textArray, $data['words']);
-
-		return $data;
-	}
-
-	public function executeQuery($data) {
-
-		$dbh = $this->db->connect(DB_NAME);
-
-		$sth = $dbh->prepare($data['query']);
-		$sth->execute($data['words']);
-
-		$data = null;
-		$i = 0;
-		while($result = $sth->fetch(PDO::FETCH_OBJ))
-		{
-			$data[$i] = $result;
-			$result->image = $this->includeRandomThumbnailFromArchive($result->id);
-			$result->title = $this->getDetailByField($result->description, 'title');
-	        $i++;
-		}
-		$dbh = null;
-
-		return $data;
-	}
-
 	public function regexFilter($var) {
 
 		$data['filter'] = array();
@@ -102,22 +51,41 @@ class searchModel extends Model {
 		return $data;
 	}
 
-	public function handleSpecialCases($data) {
+	public function getSearchResults($data){
 
-		// This method allows us to do a 'this or that' kind of search; special cases need to be listed here
-		$return = array();
-		foreach ($data as $word) {
-			
-			$newWord = preg_replace('/bangalore/', 'bengaluru|bangalore', $word);
-			array_push($return, $newWord);
+		$perPage = 10;
+		$page = $data["page"];
+		$description = $data["description"];
+		unset($data['page']);
+
+		$limit = ' LIMIT ' . ($page - 1) * $perPage . ', ' . $perPage;
+
+		$data = $this->preProcessPOST($data);
+		$query = $this->formGeneralQuery($data, METADATA_TABLE_L2, ' ORDER BY id', $limit);
+
+		$dbh = $this->db->connect(DB_NAME);
+		$sth = $dbh->prepare($query['query']);
+		$sth->execute($query['words']);
+
+		$data = [];
+		while($result = $sth->fetch(PDO::FETCH_OBJ)) {
+
+			$result->randomImagePath = $this->getArtefactThumbnail($result->id);
+			$result->field = $this->getDetailByField($result->description, 'From');
+
+			array_push($data, $result);
 		}
-		return $return;
-	}
+		$dbh = null;
 
-	public function searchPatches($data) {
+		if(!empty($data)) {
+			
+			$data['description'] = $description;
+		}
+		else {
 
-		// Special cases in searches are dealt with here
-		if(isset($data['authors'])) $data['authors'] = '"full":".*' . $data['authors'] . '[^"]*","first"';
+			$data = 'noData';
+		}
+
 		return $data;
 	}
 }
