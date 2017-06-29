@@ -4,7 +4,7 @@
     <div class="row first-row">        
         <div class="col-md-12">
             <div>
-                <form  method="POST" class="form-horizontal" role="form" id="updateData" action="<?=BASE_URL?>data/updateAlbumJson/<?=$data[0]->albumID?>" onsubmit="return validate()">
+                <form  method="POST" class="form-inline updateDataArchives" role="form" id="updateData" action="<?=BASE_URL?>data/updateAlbumJson/<?=$data[0]->albumID?>" onsubmit="return validate()">
                     <?=$viewHelper->displayDataInForm($albumDetails->description)?>
                 </form>                
             </div>

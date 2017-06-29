@@ -8,7 +8,7 @@
         </div>            
         <div class="col-md-8">
             <div class="image-desc-full">
-                <form  method="POST" class="form-inline" role="form" id="updateData" action="<?=BASE_URL?>data/updateArchiveJson/<?=$data->albumID?>" onsubmit="return validate()">
+                <form  method="POST" class="form-inline updateDataArchive" role="form" id="updateData" action="<?=BASE_URL?>data/updateArchiveJson/<?=$data->albumID?>" onsubmit="return validate()">
                     <?=$viewHelper->displayDataInForm(json_encode($data))?>
                 </form>    
             </div>
