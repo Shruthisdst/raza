@@ -218,7 +218,7 @@ class Model {
 		else{
 
 			$pages = glob($imgPath .  '/thumbs/*.JPG');
-			$thumbnailPath = $pages[0];
+			$thumbnailPath = (isset($pages[0])) ? $pages[0] : '';
 		}
 
 		return (file_exists($thumbnailPath)) ? str_replace(PHY_ARCHIVES_URL, ARCHIVES_URL, $thumbnailPath) : STOCK_IMAGE_URL . 'default-image.png';
