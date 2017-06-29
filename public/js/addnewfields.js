@@ -13,18 +13,17 @@ function addnewfields(btn)
 	var textKeyElement = document.createElement("input");	
 	textKeyElement.setAttribute("type", "text");
 	textKeyElement.setAttribute("placeholder", "Add new key");
-	textKeyElement.setAttribute("class", "form-control");
+	textKeyElement.setAttribute("class", "form-control edit key");
 	textKeyElement.setAttribute("name", "newid" + newfield + "[]");
 
 	var textValueElement = document.createElement("input");	
 	textValueElement.setAttribute("type", "text");
 	textValueElement.setAttribute("placeholder", "Add new value");
-	textValueElement.setAttribute("class", "form-control");
+	textValueElement.setAttribute("class", "form-control edit value");
 	textValueElement.setAttribute("name", "newid" + newfield + "[]");
 
-	var removeElement = document.createElement("input");
-	removeElement.setAttribute("type", "button");
-	removeElement.setAttribute("value", "Remove");
+	var removeElement = document.createElement("i");
+	removeElement.setAttribute("class", "fa fa-times");
 	removeElement.setAttribute("onclick", "removeFormElement(" + "'formgroup" + newfield + "')");
 
 	formGroupElement.appendChild(textKeyElement);

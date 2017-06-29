@@ -41,3 +41,45 @@
 #pr_email_show {
     display: none;
 }
+.form-group input[type="text"].edit.key{
+	border: none;
+	box-shadow: none;
+	text-align: right;
+	width: 200px;
+	border-bottom: 1px solid #ededed;
+	padding: 20px;
+}
+.form-group input[type="text"].edit.value{
+	border: none;
+	box-shadow: none;
+	text-align: left;
+	width: 400px;
+	border-bottom: 1px solid #ededed;
+	padding: 20px;
+	margin-left: 20px;
+}
+.form-group i.fa-times{
+	font-size: 16px;
+	color: #EF5350;
+	cursor: pointer;
+}
+#updateData i.fa-plus{
+	font-size: 20px;
+	color: #4DB6AC;
+	cursor: pointer;
+	display: block;
+	margin: 20px 0 20px 205px;
+}
+.updateSubmit{
+	float: right;
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+	border: 3px solid #4DB6AC;
+	padding: 10px;
+	margin-right: 100px
+}
+.updateSubmit:hover{
+	background-color: #4DB6AC;
+	color: #FFF;
+}

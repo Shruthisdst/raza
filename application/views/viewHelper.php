@@ -282,18 +282,23 @@ class viewHelper extends View {
         foreach ($data as $key => $value) {
              //~ echo "Key: $key; Value: $value\n";
              if($key == 'albumID') {
+				
 				if (preg_match('/__/', $value)) {
-				$id = preg_split('/__/', $value);
-				$value = $id[1];
+				
+					$id = preg_split('/__/', $value);
+					$value = $id[1];
 				}
 			 }
+    
             $disable = (($key == 'id') || ($key == 'albumID'))? 'readonly' : '';
+    
             echo '<div class="form-group" id="frmgroup' . $formgroup . '">' . "\n";
-            echo '<input type="text" class="form-control" name="id'. $count . '[]"  value="' . $key . '"' . $disable  . ' />&nbsp;' . "\n";
-            echo '<input type="text" class="form-control" name="id'. $count . '[]"  value="' . $value . '"' . $disable . ' />' . "\n";
-            if($disable != "readonly"){
-                echo '<input type="button"  onclick="removeUpdateDataElement(\'frmgroup'. $formgroup .'\')" value="Remove" />' . "\n";                
-            }
+            echo '<input type="text" class="form-control edit key" name="id'. $count . '[]"  value="' . $key . '"' . $disable  . ' />';
+            echo '<input type="text" class="form-control edit value" name="id'. $count . '[]"  value="' . $value . '"' . $disable . ' />';
+    
+            if($disable != "readonly")
+                echo '<i class="fa fa-times" title="Remove field" onclick="removeUpdateDataElement(\'frmgroup'. $formgroup .'\')" value="Remove"></i>' . "\n";
+
             echo '</div>' . "\n";
             $count++;
             $formgroup++;
@@ -301,8 +306,8 @@ class viewHelper extends View {
 
         echo '<div id="keyvalues">' . "\n";
         echo '</div>' . "\n";
-        echo '<input type="button" id="keyvaluebtn" onclick="addnewfields(keyvaluebtn)" value="Add New Fields" />' . "\n";
-        echo '<input type="submit" id="submit" value="Update Data" />' . "\n";
+        echo '<i class="fa fa-plus" title="Add new field" id="keyvaluebtn" onclick="addnewfields(keyvaluebtn)"></i>' . "\n";
+        echo '<input class="updateSubmit" type="submit" id="submit" value="Update Data" />' . "\n";
     }
 
     public function includeEditButton($albumID) {
