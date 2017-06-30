@@ -22,43 +22,6 @@ class viewHelper extends View {
         return '';
     }
 
-    public function getLettersCount($id = '') {
-
-			$archiveType = $this->getArchiveType($id);
-			$archivePath = PHY_ARCHIVES_URL . $archiveType . "/";
-			$albumID = $this->getAlbumID($id);
-
-			$count = sizeof(glob($archivePath . $albumID . '/*.json'));
-			if($archiveType == "Letters")
-			{
-				return ($count > 1) ? $count . ' Letters' : $count . ' Letter';
-			}
-			elseif($archiveType == "Articles")
-			{
-				return ($count > 1) ? $count . ' Articles' : $count . ' Article';
-			}
-			elseif($archiveType == "Brochures")
-			{
-				return ($count > 1) ? $count . ' Brochures' : $count . ' Brochure';
-			}
-			elseif($archiveType == "Books")
-			{
-				return ($count > 1) ? $count . ' Books' : $count . ' Book';
-			}
-			elseif($archiveType == "Photographs")
-			{
-				return ($count > 1) ? $count . ' Photos' : $count . ' Photo';
-			}
-			elseif($archiveType == "Artworks")
-			{
-				return ($count > 1) ? $count . ' Works' : $count . ' Work';
-			}
-			else
-			{
-				return ($count > 1) ? $count . ' Items' : $count . ' Item';
-			}
-    }
-
     public function getAlbumID($combinedID) {
 
         return preg_replace('/^(.*)__/', '', $combinedID);

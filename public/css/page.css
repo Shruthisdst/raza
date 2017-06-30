@@ -778,3 +778,166 @@ img.img-small{
   color: #3F51B5;
   font-weight: bold;
 }
+.intro{
+  padding: 75px 150px;
+}
+
+
+/*Static page texts*/
+
+/*Main page styles*/
+.main{
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 120px;
+}
+.main h1{
+  font-family: "Lato", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 50px;
+  border-bottom: 1px solid #e5ae47;
+  margin-bottom: 30px;
+}
+.main .schedule .nav{
+  margin-top: 40px;
+}
+.main .schedule .nav li{
+  border-bottom: 1px solid #CCC;
+  color: #555;
+}
+.nav>li>a:focus, .nav>li>a:hover{
+  background-color: transparent;
+}
+.main .schedule .nav li:focus, .main .schedule .nav li:hover{
+  border-bottom: 10px solid #e5ae47;
+}
+.main .schedule .nav li.active{
+  border-bottom: 10px solid #e5ae47;
+}
+.main .schedule .nav li a{
+  color: inherit;
+}
+.main .schedule span.type{
+ color: #e5ae47;
+ font-weight: 700;
+ font-style: italic; 
+ font-size: 16px;
+}
+.main .schedule span.aux{
+ color: #3F51B5;
+  font-size: 16px;
+}
+.main .schedule span.talk{
+  font-weight: 700;
+  font-size: 16px;
+}
+.main .schedule span.speaker{
+ font-size: 16px;
+ font-weight: 400;
+  font-size: 16px;
+}
+.main h2, .main .schedule-text h3{
+  font-family: "Lato", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 50px;
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+.main .schedule .session{
+  border-bottom: 1px solid #DDD;
+  padding: 20px 0;
+  margin-bottom: 0;
+}
+.main .schedule .break{
+  border-bottom: 2px solid #4CAF50;
+  border-top: 2px solid #4CAF50;
+  padding: 10px 0;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+.main .schedule .schedule-text dl{
+  margin-bottom: 0;
+  padding: 5px 0;
+}
+.main .schedule .schedule-text dl dt, .main .schedule .schedule-text dl dd{
+  line-height: 28px;
+}
+.main .schedule .schedule-text dl dt{
+  font-weight: 400;
+  font-size: 16px;
+}
+.main .affiliation{
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 30px;
+}
+.main .talk .type{
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 35px;
+  color: #e5ae47;
+  font-style: italic;
+}
+.main .talk .title{
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+.main .profile-thumb{
+  float: right;
+  width: 180px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+.main .general-list li{
+  margin-bottom: 10px;
+}
+.sidebar{
+  padding: 30px 0 0 30px;
+}
+.sidebar h1{
+  color: #3F51B5;
+  font-family: "Lato", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 50px;
+}
+.sidebar li{
+  margin-bottom: 10px;
+}
+.sidebar li a{
+  color: #3F51B5;
+}
+.more-info{
+  float: right;
+  color: #BF360C;
+  opacity: 0.8;
+  font-size: 18px;
+}
+.more-info a{
+  color: #BF360C;
+ }
+ .speaker-type{
+    font-family: "Lato", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 50px;
+ }
+ .presentation{
+  float: right;
+  font-size: 0.8em;
+ }
+ @media (min-width: 768px) {
+   .intro{
+      width: 80%;
+      margin: 50px 0 0px 20px;
+   }
+   .logos{
+    text-align: right;
+  }
+}
+
+

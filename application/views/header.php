@@ -65,16 +65,16 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-primary-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<?=BASE_URL?>#home">Raza Foundation</a></li>
+                    <li><a href="<?=BASE_URL?>#home">Home</a></li>
                     <li><a>·</a></li>
-<!--                     <li><a href="<?=BASE_URL?>#about">About</a></li>
+                    <li><a href="<?=BASE_URL?>S_H_Raza">S H Raza</a></li>
                     <li><a>·</a></li>
- -->                    <li><a href="<?=BASE_URL?>#collection">Collection</a></li>
+                    <li><a href="<?=BASE_URL?>Raza_Foundation">Raza Foundation</a></li>
                     <li><a href="#"><img src="<?=PUBLIC_URL?>images/logo.png" alt="The Raza Foundation" class="img-circle logo"></a></li>
-                    <li><a href="#">News and Events</a></li>
+                    <li><a href="<?=BASE_URL?>#collection">Raza Archives</a></li>
                     <li><a>·</a></li>
-                    <li><a href="<?=BASE_URL?>#contact">Contact</a></li>
-                     <li><a>·</a></li>
+                    <li><a href="<?=BASE_URL?>#">Upcoming Events</a></li>
+                    <li><a>·</a></li>
                     <li>
 <?php
 if(isset($_SESSION['login']))
