@@ -932,8 +932,8 @@ img.img-small{
  }
  @media (min-width: 768px) {
    .intro{
-      width: 80%;
-      margin: 50px 0 0px 20px;
+      /*width: 80%;*/
+      margin: 50px 0 0px 0px;
    }
    .logos{
     text-align: right;

@@ -33,7 +33,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> -->
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/navbar.css">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/carousel.css">
-    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/page.css?v=2">
+    <link rel="stylesheet" href="<?=PUBLIC_URL?>css/page.css?v=3">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/archive.css">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/general.css">
     <link rel="stylesheet" href="<?=PUBLIC_URL?>css/flat.css">
