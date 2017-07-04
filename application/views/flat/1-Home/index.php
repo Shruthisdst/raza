@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-12 intro">
 			<p>Raza Foundation is an arts and culture organization under the guidance of Mr. SH Raza who sets an example where fame and glory are not lonesome attainments but things to be liberally shared with the broader creative community. The Foundation has been instrumental in creating spaces for various art and culture programs, publications and fellowships to the younger talent and also carrying a deeper research into the work of the masters.</p>
-			<p id="right"><a href="<?=BASE_URL?>The_Raza_Foundation">More ...</a></p>
+			<p id="right"><a href="<?=BASE_URL?>Raza_Foundation">More ...</a></p>
          </div>
     </div>    
 </div>
